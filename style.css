@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -344,6 +345,27 @@ footer {
     padding:30px 0;
 
 }
+
+
+/* Developer Credit */
+
+.developer {
+
+    margin-top:20px;
+    font-size:14px;
+    opacity:0.8;
+
+}
+
+
+.developer strong {
+
+    display:inline-block;
+    margin-top:5px;
+    font-size:18px;
+
+}
+
 
 
 

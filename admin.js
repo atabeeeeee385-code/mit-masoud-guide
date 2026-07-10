@@ -8,129 +8,304 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
-// التأكد من تسجيل دخول الإدارة
-if (localStorage.getItem("adminLogin") !== "true") {
-  window.location.href = "admin-login.html";
-}
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+
+
+const auth = getAuth();
+
+
 
 const serviceList = document.querySelector(".service-list");
+
 
 let services = [];
 
 
-// تحميل الخدمات من Firebase
-async function loadServices() {
-
-  services = [];
-
-  const querySnapshot = await getDocs(collection(db, "services"));
-
-  querySnapshot.forEach((document) => {
-
-    services.push({
-      id: document.id,
-      ...document.data()
-    });
-
-  });
-
-  services.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-  displayAdmin();
-
-}
 
 
+// التأكد من تسجيل دخول Firebase
+onAuthStateChanged(auth, (user)=>{
 
-// عرض الخدمات
-function displayAdmin() {
 
-  if (!serviceList) return;
+  if(!user){
 
-  serviceList.innerHTML = "";
-
-  if (services.length === 0) {
-
-    serviceList.innerHTML = `
-
-      <div class="service-card">
-
-        <h3>لا توجد خدمات</h3>
-
-      </div>
-
-    `;
+    window.location.href = "admin-login.html";
 
     return;
 
   }
 
-  services.forEach((service) => {
 
-    serviceList.innerHTML += `
+  loadServices();
 
-      <div class="service-card">
 
-        <h3>👤 ${service.name}</h3>
+});
 
-        <span>🔧 ${service.job}</span>
 
-        <p>📍 ${service.address || "ميت مسعود"}</p>
 
-        <p>📞 ${service.phone}</p>
 
-        <div class="buttons">
 
-          <a class="details-btn"
-          href="service.html?id=${service.id}">
 
-          عرض
+// تحميل الخدمات
 
-          </a>
+async function loadServices(){
 
-          <button
-          class="call"
-          onclick="deleteService('${service.id}')">
 
-          حذف
+try{
 
-          </button>
 
-        </div>
+services = [];
 
-      </div>
 
-    `;
+const querySnapshot =
+await getDocs(
+collection(db,"services")
+);
 
-  });
+
+
+querySnapshot.forEach((document)=>{
+
+
+services.push({
+
+id: document.id,
+
+...document.data()
+
+});
+
+
+});
+
+
+
+
+// ترتيب الأحدث
+
+services.sort((a,b)=>{
+
+return (
+
+(b.createdAt?.seconds || b.createdAt || 0)
+
+-
+
+(a.createdAt?.seconds || a.createdAt || 0)
+
+);
+
+});
+
+
+
+displayAdmin();
+
+
 
 }
+
+catch(error){
+
+console.error(error);
+
+alert("حدث خطأ أثناء تحميل الخدمات");
+
+}
+
+
+}
+
+
+
+
+
+
+// عرض الخدمات
+
+function displayAdmin(){
+
+
+if(!serviceList) return;
+
+
+serviceList.innerHTML = "";
+
+
+
+if(services.length === 0){
+
+
+serviceList.innerHTML = `
+
+<div class="service-card">
+
+<h3>
+لا توجد خدمات
+</h3>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+
+
+services.forEach((service)=>{
+
+
+
+serviceList.innerHTML += `
+
+
+<div class="service-card">
+
+
+<h3>
+👤 ${service.name}
+</h3>
+
+
+
+<span>
+🔧 ${service.job}
+</span>
+
+
+
+<p>
+📍 ${service.address || "ميت مسعود"}
+</p>
+
+
+
+<p>
+📞 ${service.phone}
+</p>
+
+
+
+
+<div class="buttons">
+
+
+<a class="details-btn"
+href="service.html?id=${service.id}">
+
+عرض
+
+</a>
+
+
+
+
+<button
+class="call"
+onclick="deleteService('${service.id}')">
+
+حذف
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
 
 
 
 // حذف خدمة
+
 window.deleteService = async function(id){
 
-  if(!confirm("هل تريد حذف الخدمة؟")) return;
 
-  await deleteDoc(doc(db,"services",id));
 
-  loadServices();
+if(!confirm("هل تريد حذف الخدمة؟"))
+
+return;
+
+
+
+try{
+
+
+await deleteDoc(
+
+doc(db,"services",id)
+
+);
+
+
+
+alert("تم حذف الخدمة ✅");
+
+
+
+loadServices();
+
+
 
 }
+
+catch(error){
+
+
+console.error(error);
+
+
+alert("حدث خطأ أثناء الحذف");
+
+
+}
+
+
+
+}
+
+
+
+
 
 
 
 // تسجيل الخروج
-window.logout = function(){
 
-  localStorage.removeItem("adminLogin");
+window.logout = async function(){
 
-  window.location.href="admin-login.html";
+
+await signOut(auth);
+
+
+
+window.location.href =
+"admin-login.html";
+
 
 }
-
-
-
-// تشغيل الصفحة
-loadServices();
