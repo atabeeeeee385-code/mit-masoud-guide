@@ -19,23 +19,36 @@ const auth = getAuth(app);
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
 
-  const password = document.getElementById("password").value;
+    e.preventDefault();
 
-  try {
+    const password = document.getElementById("password").value;
 
-    await signInWithEmailAndPassword(
-      auth,
-      "admin@metmasoud.com",
-      password
-    );
+    try {
 
-    window.location.href = "admin.html";
+        await signInWithEmailAndPassword(
+            auth,
+            "admin@metmasoud.com",
+            password
+        );
 
-  } catch (error) {
+        // حفظ حالة تسجيل الدخول
+        localStorage.setItem("adminLogin", "true");
 
-    alert("كلمة المرور غير صحيحة ❌");
+        // الانتقال إلى لوحة التحكم
+        window.location.href = "admin.html";
 
-  }
+    } catch (error) {
+
+        console.error("Firebase Error:", error);
+
+        alert(
+            "خطأ: " +
+            error.code +
+            "\n\n" +
+            error.message
+        );
+
+    }
+
 });

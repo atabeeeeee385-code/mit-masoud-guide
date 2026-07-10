@@ -1,58 +1,136 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { db } from "./firebase.js";
 
 import {
-  getAuth,
-  signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCr7D-Vv1SLUEso0VeCmJKDJr1SVADzNUw",
-  authDomain: "services-met-masoud.firebaseapp.com",
-  projectId: "services-met-masoud",
-  storageBucket: "services-met-masoud.firebasestorage.app",
-  messagingSenderId: "335040058260",
-  appId: "1:335040058260:web:51ab069e0ff90e42137581"
-};
+// التأكد من تسجيل دخول الإدارة
+if (localStorage.getItem("adminLogin") !== "true") {
+  window.location.href = "admin-login.html";
+}
+
+const serviceList = document.querySelector(".service-list");
+
+let services = [];
 
 
-const app = initializeApp(firebaseConfig);
+// تحميل الخدمات من Firebase
+async function loadServices() {
 
-const auth = getAuth(app);
+  services = [];
 
+  const querySnapshot = await getDocs(collection(db, "services"));
 
-const loginForm = document.getElementById("loginForm");
+  querySnapshot.forEach((document) => {
 
+    services.push({
+      id: document.id,
+      ...document.data()
+    });
 
-loginForm.addEventListener("submit", async (e) => {
+  });
 
-  e.preventDefault();
+  services.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
+  displayAdmin();
 
-  const password = document.getElementById("password").value;
-
-
-  try {
-
-    await signInWithEmailAndPassword(
-      auth,
-      "admin@metmasoud.com",
-      password
-    );
+}
 
 
-    // حفظ تسجيل دخول الإدارة
-    localStorage.setItem("adminLogin", "true");
 
+// عرض الخدمات
+function displayAdmin() {
 
-    // الذهاب للوحة التحكم
-    window.location.href = "admin.html";
+  if (!serviceList) return;
 
+  serviceList.innerHTML = "";
 
-  } catch (error) {
+  if (services.length === 0) {
 
-    alert("كلمة المرور غير صحيحة ❌");
+    serviceList.innerHTML = `
+
+      <div class="service-card">
+
+        <h3>لا توجد خدمات</h3>
+
+      </div>
+
+    `;
+
+    return;
 
   }
 
-});
+  services.forEach((service) => {
+
+    serviceList.innerHTML += `
+
+      <div class="service-card">
+
+        <h3>👤 ${service.name}</h3>
+
+        <span>🔧 ${service.job}</span>
+
+        <p>📍 ${service.address || "ميت مسعود"}</p>
+
+        <p>📞 ${service.phone}</p>
+
+        <div class="buttons">
+
+          <a class="details-btn"
+          href="service.html?id=${service.id}">
+
+          عرض
+
+          </a>
+
+          <button
+          class="call"
+          onclick="deleteService('${service.id}')">
+
+          حذف
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+
+
+// حذف خدمة
+window.deleteService = async function(id){
+
+  if(!confirm("هل تريد حذف الخدمة؟")) return;
+
+  await deleteDoc(doc(db,"services",id));
+
+  loadServices();
+
+}
+
+
+
+// تسجيل الخروج
+window.logout = function(){
+
+  localStorage.removeItem("adminLogin");
+
+  window.location.href="admin-login.html";
+
+}
+
+
+
+// تشغيل الصفحة
+loadServices();
