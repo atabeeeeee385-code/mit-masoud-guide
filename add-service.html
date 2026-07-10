@@ -11,11 +11,14 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -31,89 +34,110 @@
 
 </header>
 
-
-
 <section class="hero">
 
-<div class="container">
+    <div class="container">
 
-<h1>
-أضف خدمتك في دليل ميت مسعود
-</h1>
+        <h1>
+            أضف خدمتك في دليل ميت مسعود
+        </h1>
 
-<p>
-سجل بياناتك ليجدك أهل القرية بسهولة
-</p>
+        <p>
+            سجل بياناتك ليجدك أهل القرية بسهولة
+        </p>
 
-
-</div>
+    </div>
 
 </section>
-
-
 
 <section>
 
 <div class="container">
 
-
 <div class="service-card">
-
 
 <form id="serviceForm">
 
+    <label>الاسم</label>
 
-<label>الاسم</label>
+    <input
+    type="text"
+    id="name"
+    placeholder="اكتب اسمك"
+    required>
 
-<input type="text" id="name" placeholder="اكتب اسمك" required>
+    <label>المهنة</label>
 
+    <input
+    type="text"
+    id="job"
+    placeholder="مثال: فني موتوسيكلات - كهربائي - حلاق"
+    required>
 
+    <label>رقم الهاتف</label>
 
-<label>المهنة</label>
+    <input
+    type="text"
+    id="phone"
+    placeholder="010xxxxxxxx"
+    required>
 
-<input type="text" id="job" placeholder="مثال: كهربائي" required>
+    <label>رقم الواتساب</label>
 
+    <input
+    type="text"
+    id="whatsapp"
+    placeholder="2010xxxxxxxx">
 
+    <label>العنوان</label>
 
-<label>رقم الهاتف</label>
+    <input
+    type="text"
+    id="address"
+    placeholder="اكتب العنوان">
 
-<input type="text" id="phone" placeholder="010xxxxxxxx" required>
+    <label>وصف الخدمة</label>
 
+    <textarea
+    id="description"
+    placeholder="اكتب تفاصيل عن خدمتك"></textarea>
 
+    <label>رابط صفحة فيسبوك</label>
 
-<label>العنوان</label>
+    <input
+    type="url"
+    id="facebook"
+    placeholder="https://facebook.com/...">
 
-<input type="text" id="address" placeholder="العنوان">
+    <label>رابط إنستجرام</label>
 
+    <input
+    type="url"
+    id="instagram"
+    placeholder="https://instagram.com/...">
 
+    <label>رابط تيك توك</label>
 
-<label>وصف الخدمة</label>
+    <input
+    type="url"
+    id="tiktok"
+    placeholder="https://tiktok.com/...">
 
-<textarea id="description"
-placeholder="اكتب تفاصيل عن خدمتك"></textarea>
+    <button type="submit">
 
+        إرسال البيانات
 
-
-<button type="submit">
-إرسال البيانات
-</button>
-
+    </button>
 
 </form>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-
-<script src="script.js"></script>
-
+<script type="module" src="script.js"></script>
 
 </body>
-
 </html>
