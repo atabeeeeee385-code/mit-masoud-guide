@@ -1,166 +1,403 @@
 import { db } from "./firebase.js";
+
 import {
   collection,
-  getDocs
+  getDocs,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+
 
 let services = [];
 
+
+
 const serviceList = document.querySelector(".service-list");
+
 const allSearch = document.getElementById("allSearch");
 
-// تحميل الخدمات من Firebase
-async function loadServices() {
 
-    services = [];
 
-    const querySnapshot = await getDocs(collection(db, "services"));
+// معرفة القرية من الرابط
 
-    querySnapshot.forEach((doc) => {
+const params = new URLSearchParams(window.location.search);
 
-        services.push({
-            id: doc.id,
-            ...doc.data()
-        });
+const villageName = params.get("village") || "ميت مسعود";
 
-    });
 
-    // الأحدث أولاً
-    services.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
-    displayServices(services);
+
+
+
+
+
+// تحميل الخدمات الخاصة بالقرية فقط
+
+async function loadServices(){
+
+
+try{
+
+
+services = [];
+
+
+
+const q = query(
+
+collection(db,"services"),
+
+where("village","==",villageName),
+
+where("status","==","approved")
+
+);
+
+
+
+
+const querySnapshot = await getDocs(q);
+
+
+
+
+
+querySnapshot.forEach((doc)=>{
+
+
+services.push({
+
+id:doc.id,
+
+...doc.data()
+
+});
+
+
+});
+
+
+
+
+
+
+services.sort((a,b)=>
+
+(b.createdAt || 0) -
+
+(a.createdAt || 0)
+
+);
+
+
+
+
+
+displayServices(services);
+
+
 
 }
+
+catch(error){
+
+
+console.error(error);
+
+
+alert("حدث خطأ أثناء تحميل الخدمات");
+
+
+}
+
+
+
+}
+
+
+
+
+
+
 
 
 
 // عرض الخدمات
-function displayServices(data) {
 
-    if (!serviceList) return;
-
-    serviceList.innerHTML = "";
-
-    if (data.length === 0) {
-
-        serviceList.innerHTML = `
-        <div class="service-card">
-
-            <h3>لا توجد خدمات ❌</h3>
-
-            <p>جرب البحث عن خدمة أخرى.</p>
-
-        </div>
-        `;
-
-        return;
-
-    }
+function displayServices(data){
 
 
 
-    data.forEach(service => {
+if(!serviceList) return;
 
-        serviceList.innerHTML += `
 
-        <div class="service-card">
 
-            <h3>👤 ${service.name}</h3>
+serviceList.innerHTML = "";
 
-            <span>🔧 ${service.job}</span>
 
-            <p>📍 ${service.address || "ميت مسعود"}</p>
 
-            <p>📝 ${service.description || "خدمة داخل ميت مسعود"}</p>
 
-            <div class="buttons">
+if(data.length === 0){
 
-                <a class="call"
-                href="tel:${service.phone}">
 
-                📞 اتصال
+serviceList.innerHTML = `
 
-                </a>
 
-                <a class="whatsapp"
-                href="https://wa.me/${service.whatsapp || service.phone}"
-                target="_blank">
+<div class="service-card">
 
-                💬 واتساب
 
-                </a>
+<h3>
+لا توجد خدمات في ${villageName} حاليا ❌
+</h3>
 
-            </div>
 
-            <br>
+<p>
+كن أول من يضيف خدمته.
+</p>
 
-            <a class="details-btn"
-            href="service.html?id=${service.id}">
 
-            عرض التفاصيل
+</div>
 
-            </a>
 
-        </div>
+`;
 
-        `;
+return;
 
-    });
 
 }
+
+
+
+
+
+
+data.forEach(service=>{
+
+
+
+serviceList.innerHTML += `
+
+
+<div class="service-card">
+
+
+
+<h3>
+👤 ${service.name}
+</h3>
+
+
+
+
+<span>
+🔧 ${service.job}
+</span>
+
+
+
+
+
+<p>
+📍 ${service.address || service.village}
+</p>
+
+
+
+
+<p>
+📝 ${service.description || "خدمة داخل " + service.village}
+</p>
+
+
+
+
+
+
+<div class="buttons">
+
+
+
+<a class="call"
+
+href="tel:${service.phone}">
+
+📞 اتصال
+
+</a>
+
+
+
+
+
+<a class="whatsapp"
+
+href="https://wa.me/${service.whatsapp || service.phone}"
+
+target="_blank">
+
+💬 واتساب
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+<a class="details-btn"
+
+href="service.html?id=${service.id}&village=${villageName}">
+
+عرض التفاصيل
+
+</a>
+
+
+
+
+
+</div>
+
+
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
 
 
 
 // البحث
-if (allSearch) {
 
-    allSearch.addEventListener("keyup", function () {
+if(allSearch){
 
-        let value = allSearch.value.toLowerCase();
 
-        let filtered = services.filter(service =>
+allSearch.addEventListener("keyup",function(){
 
-            service.name.toLowerCase().includes(value) ||
 
-            service.job.toLowerCase().includes(value) ||
 
-            (service.address &&
-                service.address.toLowerCase().includes(value)) ||
+let value = allSearch.value.toLowerCase();
 
-            (service.description &&
-                service.description.toLowerCase().includes(value))
 
-        );
 
-        displayServices(filtered);
 
-    });
+
+let filtered = services.filter(service =>
+
+
+
+(service.name &&
+
+service.name.toLowerCase().includes(value))
+
+
+||
+
+
+(service.job &&
+
+service.job.toLowerCase().includes(value))
+
+
+||
+
+
+(service.address &&
+
+service.address.toLowerCase().includes(value))
+
+
+||
+
+
+(service.description &&
+
+service.description.toLowerCase().includes(value))
+
+
+
+);
+
+
+
+displayServices(filtered);
+
+
+
+});
+
 
 }
 
 
 
+
+
+
+
+
+
 // فلترة الأقسام
-window.filterAll = function (category) {
 
-    if (category === "") {
+window.filterAll = function(category){
 
-        displayServices(services);
 
-        return;
 
-    }
+if(category === ""){
 
-    let filtered = services.filter(service =>
 
-        service.job.includes(category)
+displayServices(services);
 
-    );
 
-    displayServices(filtered);
+return;
+
+}
+
+
+
+
+let filtered = services.filter(service =>
+
+
+service.job.includes(category)
+
+
+);
+
+
+
+
+displayServices(filtered);
+
+
 
 };
 
 
-// تحميل الخدمات عند فتح الصفحة
+
+
+
+
+
 loadServices();

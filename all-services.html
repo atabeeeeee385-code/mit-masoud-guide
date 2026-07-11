@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -9,7 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>كل الخدمات - دليل خدمات ميت مسعود</title>
+<title id="pageTitle">
+كل الخدمات - دليل خدمات القرية
+</title>
 
 
 <link rel="stylesheet" href="style.css">
@@ -34,16 +35,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 <div class="container">
 
 
-<div class="logo">
-📍 دليل خدمات ميت مسعود
+<div class="logo" id="logoTitle">
+
+📍 دليل خدمات القرية
+
 </div>
+
+
 
 
 
 <nav>
 
 
-<a href="index.html">
+<a id="homeLink" href="index.html">
 الرئيسية
 </a>
 
@@ -53,9 +58,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 </a>
 
 
-<a href="add-service.html">
+
+<a id="addServiceLink" href="add-service.html">
 أضف خدمتك
 </a>
+
 
 
 </nav>
@@ -71,15 +78,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 
 
+
+
+
 <section class="hero">
 
 
 <div class="container">
 
 
-<h1>
-كل خدمات ميت مسعود
+<h1 id="heroTitle">
+كل خدمات القرية
 </h1>
+
 
 
 <p>
@@ -89,13 +100,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
 
 
+
 <div class="search-box">
 
 
 <input
+
 type="text"
+
 id="allSearch"
-placeholder="ابحث عن اسم أو خدمة...">
+
+placeholder="ابحث عن اسم أو خدمة..."
+
+>
+
 
 
 
@@ -106,7 +124,6 @@ placeholder="ابحث عن اسم أو خدمة...">
 </button>
 
 
-
 </div>
 
 
@@ -115,6 +132,8 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 </section>
+
+
 
 
 
@@ -135,6 +154,7 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 
+
 <div class="category-filter">
 
 
@@ -143,11 +163,9 @@ placeholder="ابحث عن اسم أو خدمة...">
 </button>
 
 
-
 <button onclick="filterAll('كهربائي')">
 كهربائي
 </button>
-
 
 
 <button onclick="filterAll('سباك')">
@@ -155,17 +173,14 @@ placeholder="ابحث عن اسم أو خدمة...">
 </button>
 
 
-
 <button onclick="filterAll('نجار')">
 نجار
 </button>
 
 
-
 <button onclick="filterAll('حلاق')">
 حلاق
 </button>
-
 
 
 <button onclick="filterAll('طبيب')">
@@ -180,7 +195,13 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 
-<div class="service-list"></div>
+
+
+<div class="service-list">
+
+</div>
+
+
 
 
 
@@ -196,14 +217,15 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 
+
 <footer>
 
 
 <div class="container">
 
 
-<h3>
-دليل خدمات ميت مسعود
+<h3 id="footerTitle">
+دليل خدمات القرية
 </h3>
 
 
@@ -214,7 +236,6 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 
-
 <p>
 © 2026 جميع الحقوق محفوظة.
 </p>
@@ -222,11 +243,11 @@ placeholder="ابحث عن اسم أو خدمة...">
 
 
 
+
 <a href="admin-login.html">
-
 🔐 دخول الإدارة
-
 </a>
+
 
 
 
@@ -251,7 +272,6 @@ Abdallah Badawy
 💻 Web Developer
 
 
-
 </p>
 
 
@@ -268,6 +288,64 @@ Abdallah Badawy
 
 
 
+
+
+<script>
+
+
+const params = new URLSearchParams(window.location.search);
+
+
+const villageName = params.get("village") || "ميت مسعود";
+
+
+
+
+document.title =
+"كل الخدمات - دليل خدمات " + villageName;
+
+
+
+
+document.getElementById("logoTitle").textContent =
+"📍 دليل خدمات " + villageName;
+
+
+
+
+document.getElementById("heroTitle").textContent =
+"كل خدمات " + villageName;
+
+
+
+
+document.getElementById("footerTitle").textContent =
+"دليل خدمات " + villageName;
+
+
+
+
+
+document.getElementById("addServiceLink").href =
+"add-service.html?village=" + villageName;
+
+
+
+
+document.getElementById("homeLink").href =
+"index.html?village=" + villageName;
+
+
+
+
+</script>
+
+
+
+
+
+
+
 <script type="module" src="all-services.js"></script>
 
 
@@ -276,4 +354,3 @@ Abdallah Badawy
 
 
 </html>
-

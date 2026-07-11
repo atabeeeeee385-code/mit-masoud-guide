@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دليل خدمات القرية</title>
+
+<meta name="description" content="دليل خدمات القرية">
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="container">
+
+
+<div class="logo">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<h2 id="villageTitle">
+دليل خدمات القرية
+</h2>
+
+</div>
+
+
+<nav>
+
+<a href="index.html">
+الرئيسية
+</a>
+
+
+<a id="allServicesLink" href="all-services.html">
+كل الخدمات
+</a>
+
+
+<a id="addServiceLink" href="add-service.html">
+أضف خدمتك
+</a>
+
+
+</nav>
+
+
+</div>
+
+</header>
+
+
+
+
+
+
+<section class="hero">
+
+
+<div class="container">
+
+
+<h1 id="heroTitle">
+كل خدمات القرية
+</h1>
+
+
+<p>
+ابحث عن أي خدمة في قريتك بسهولة.
+</p>
+
+
+
+<div class="search-box">
+
+
+<input
+type="text"
+id="searchInput"
+placeholder="ابحث عن خدمة...">
+
+
+
+<button>
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="categories">
+
+
+<div class="container">
+
+
+<h2>
+أقسام الخدمات
+</h2>
+
+
+
+
+<div class="cards">
+
+
+
+
+
+<div class="card" onclick="filterCategory('health')">
+
+<i class="fa-solid fa-user-doctor"></i>
+
+<h3>
+🏥 الصحة والطوارئ
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('home')">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+<h3>
+🏠 المنزل والصيانة
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('cars')">
+
+<i class="fa-solid fa-car"></i>
+
+<h3>
+🚗 السيارات والمواصلات
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('food')">
+
+<i class="fa-solid fa-utensils"></i>
+
+<h3>
+🍔 الطعام والديليفري
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('shipping')">
+
+<i class="fa-solid fa-truck"></i>
+
+<h3>
+📦 الشحن والتوصيل
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('shops')">
+
+<i class="fa-solid fa-store"></i>
+
+<h3>
+🛒 المحلات والتجارة
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('personal')">
+
+<i class="fa-solid fa-user"></i>
+
+<h3>
+💇 خدمات شخصية
+</h3>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="filterCategory('general')">
+
+<i class="fa-solid fa-star"></i>
+
+<h3>
+⭐ خدمات عامة
+</h3>
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="global-services">
+
+
+<div class="container">
+
+
+<h2>
+⭐ خدمات مهمة لكل القرى
+</h2>
+
+
+
+<div class="service-list" id="globalList">
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<section class="services">
+
+
+<div class="container">
+
+
+<h2>
+أحدث خدمات القرية
+</h2>
+
+
+<div class="service-list">
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<footer>
+
+<div class="container">
+
+
+<h3 id="footerTitle">
+دليل خدمات القرية
+</h3>
+
+
+
+<p>
+جميع خدمات القرية في مكان واحد.
+</p>
+
+
+
+<p>
+© 2026 جميع الحقوق محفوظة.
+</p>
+
+
+
+<a href="admin-login.html">
+🔐 دخول الإدارة
+</a>
+
+
+
+
+<p class="developer">
+
+تم التطوير بواسطة
+
+<br>
+
+<strong>
+Abdallah Badawy
+</strong>
+
+<br>
+
+💻 Web Developer
+
+</p>
+
+
+
+</div>
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+<script>
+
+
+const params = new URLSearchParams(window.location.search);
+
+
+const villageName = params.get("village") || "ميت مسعود";
+
+
+
+
+
+document.title =
+"دليل خدمات " + villageName;
+
+
+
+
+
+document.getElementById("villageTitle").textContent =
+"دليل خدمات " + villageName;
+
+
+
+
+
+document.getElementById("heroTitle").textContent =
+"كل خدمات قرية " + villageName;
+
+
+
+
+
+document.getElementById("footerTitle").textContent =
+"دليل خدمات " + villageName;
+
+
+
+
+
+
+const addServiceLink =
+document.getElementById("addServiceLink");
+
+
+
+addServiceLink.href =
+"add-service.html?village=" + villageName;
+
+
+
+
+
+
+
+const allServicesLink =
+document.getElementById("allServicesLink");
+
+
+
+allServicesLink.href =
+"all-services.html?village=" + villageName;
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script type="module" src="script.js"></script>
+
+
+</body>
+
+</html>

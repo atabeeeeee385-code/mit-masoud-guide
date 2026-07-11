@@ -1,26 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <title>أضف خدمتك - دليل خدمات ميت مسعود</title>
-
-
-    <link rel="stylesheet" href="style.css">
+<title id="pageTitle">
+أضف خدمتك
+</title>
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
 
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -29,22 +24,19 @@
 
 
 
-
 <header>
 
-
-    <div class="container">
-
-
-        <div class="logo">
-
-            📍 دليل خدمات ميت مسعود
-
-        </div>
+<div class="container">
 
 
-    </div>
+<div class="logo" id="logoTitle">
 
+📍 دليل خدمات القرية
+
+</div>
+
+
+</div>
 
 </header>
 
@@ -56,25 +48,28 @@
 <section class="hero">
 
 
-    <div class="container">
+<div class="container">
 
 
-        <h1>
-            أضف خدمتك في دليل ميت مسعود
-        </h1>
+<h1 id="heroTitle">
+
+أضف خدمتك
+
+</h1>
 
 
+<p>
 
-        <p>
-            سجل بياناتك ليجدك أهل القرية بسهولة
-        </p>
+سجل بياناتك ليجدك أهل القرية بسهولة
+
+</p>
 
 
-
-    </div>
+</div>
 
 
 </section>
+
 
 
 
@@ -95,14 +90,16 @@
 
 
 
+
+
 <label>
 الاسم
 </label>
 
 
-<input
-type="text"
-id="name"
+<input 
+type="text" 
+id="name" 
 placeholder="اكتب اسمك"
 required>
 
@@ -110,16 +107,82 @@ required>
 
 
 
+
+
 <label>
-المهنة
+القسم
 </label>
 
 
-<input
-type="text"
-id="job"
-placeholder="مثال: فني موتوسيكلات - كهربائي - حلاق"
+<select id="category" required>
+
+
+<option value="">
+اختر القسم
+</option>
+
+
+<option value="health">
+🏥 الصحة والطوارئ
+</option>
+
+
+<option value="home">
+🏠 المنزل والصيانة
+</option>
+
+
+<option value="cars">
+🚗 السيارات والمواصلات
+</option>
+
+
+<option value="food">
+🍔 الطعام والديليفري
+</option>
+
+
+<option value="shipping">
+📦 الشحن والتوصيل
+</option>
+
+
+<option value="shops">
+🛒 المحلات والتجارة
+</option>
+
+
+<option value="personal">
+💇 خدمات شخصية
+</option>
+
+
+<option value="general">
+⭐ خدمات عامة
+</option>
+
+
+
+</select>
+
+
+
+
+
+
+
+<label>
+المهنة أو الخدمة
+</label>
+
+
+<input 
+type="text" 
+id="job" 
+placeholder="مثال: دكتور - كهربائي - سائق"
 required>
+
+
 
 
 
@@ -130,11 +193,13 @@ required>
 </label>
 
 
-<input
-type="text"
-id="phone"
+<input 
+type="text" 
+id="phone" 
 placeholder="010xxxxxxxx"
 required>
+
+
 
 
 
@@ -145,10 +210,12 @@ required>
 </label>
 
 
-<input
-type="text"
-id="whatsapp"
+<input 
+type="text" 
+id="whatsapp" 
 placeholder="2010xxxxxxxx">
+
+
 
 
 
@@ -159,10 +226,12 @@ placeholder="2010xxxxxxxx">
 </label>
 
 
-<input
-type="text"
-id="address"
+<input 
+type="text" 
+id="address" 
 placeholder="اكتب العنوان">
+
+
 
 
 
@@ -173,9 +242,11 @@ placeholder="اكتب العنوان">
 </label>
 
 
-<textarea
-id="description"
+<textarea 
+id="description" 
 placeholder="اكتب تفاصيل عن خدمتك"></textarea>
+
+
 
 
 
@@ -186,10 +257,11 @@ placeholder="اكتب تفاصيل عن خدمتك"></textarea>
 </label>
 
 
-<input
-type="url"
-id="facebook"
-placeholder="https://facebook.com/...">
+<input 
+type="url" 
+id="facebook">
+
+
 
 
 
@@ -200,10 +272,11 @@ placeholder="https://facebook.com/...">
 </label>
 
 
-<input
-type="url"
-id="instagram"
-placeholder="https://instagram.com/...">
+<input 
+type="url" 
+id="instagram">
+
+
 
 
 
@@ -214,10 +287,11 @@ placeholder="https://instagram.com/...">
 </label>
 
 
-<input
-type="url"
-id="tiktok"
-placeholder="https://tiktok.com/...">
+<input 
+type="url" 
+id="tiktok">
+
+
 
 
 
@@ -232,7 +306,6 @@ placeholder="https://tiktok.com/...">
 
 
 </form>
-
 
 
 </div>
@@ -250,21 +323,26 @@ placeholder="https://tiktok.com/...">
 
 
 
+
 <footer>
 
 
 <div class="container">
 
 
-<h3>
-دليل خدمات ميت مسعود
+<h3 id="footerTitle">
+
+دليل خدمات القرية
+
 </h3>
+
 
 
 
 <p>
 جميع خدمات القرية في مكان واحد.
 </p>
+
 
 
 
@@ -275,26 +353,20 @@ placeholder="https://tiktok.com/...">
 
 
 
-<p class="developer">
 
+<p class="developer">
 
 تم التطوير بواسطة
 
-
 <br>
-
 
 <strong>
 Abdallah Badawy
 </strong>
 
-
 <br>
 
-
 💻 Web Developer
-
-
 
 </p>
 
@@ -312,12 +384,57 @@ Abdallah Badawy
 
 
 
-<script type="module" src="script.js"></script>
 
+
+<script>
+
+
+const params = new URLSearchParams(window.location.search);
+
+
+const villageName = params.get("village") || "ميت مسعود";
+
+
+
+
+document.title =
+
+"أضف خدمتك - دليل خدمات " + villageName;
+
+
+
+
+document.getElementById("logoTitle").textContent =
+
+"📍 دليل خدمات " + villageName;
+
+
+
+
+document.getElementById("heroTitle").textContent =
+
+"أضف خدمتك في دليل " + villageName;
+
+
+
+
+document.getElementById("footerTitle").textContent =
+
+"دليل خدمات " + villageName;
+
+
+
+</script>
+
+
+
+
+
+
+
+<script type="module" src="script.js"></script>
 
 
 </body>
 
-
 </html>
-

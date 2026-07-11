@@ -1,33 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>دليل خدمات ميت مسعود</title>
+<title>دليل خدمات مركز شبين الكوم</title>
 
-    <meta name="description" content="دليل خدمات قرية ميت مسعود">
+<meta name="description" content="دليل خدمات مركز شبين الكوم">
 
+<link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
 
 <body>
-
 
 
 <header>
@@ -39,41 +33,14 @@
 
 <i class="fa-solid fa-location-dot"></i>
 
-<h2>
-دليل خدمات ميت مسعود
-</h2>
+دليل خدمات مركز شبين الكوم
 
 </div>
-
-
-
-
-<nav>
-
-<a href="index.html">
-الرئيسية
-</a>
-
-
-<a href="all-services.html">
-كل الخدمات
-</a>
-
-
-<a href="add-service.html">
-أضف خدمتك
-</a>
-
-
-</nav>
-
 
 
 </div>
 
 </header>
-
-
 
 
 
@@ -84,17 +51,14 @@
 <div class="container">
 
 
-
 <h1>
-كل خدمات قرية ميت مسعود
+كل خدمات مركز شبين الكوم
 </h1>
 
 
-
 <p>
-ابحث عن أي صنايعي أو محل أو طبيب بسهولة.
+اختار قريتك للوصول لكل الخدمات بسهولة
 </p>
-
 
 
 
@@ -103,9 +67,8 @@
 
 <input
 type="text"
-id="searchInput"
-placeholder="ابحث عن خدمة...">
-
+id="villageSearch"
+placeholder="ابحث عن قريتك...">
 
 
 <button>
@@ -115,7 +78,6 @@ placeholder="ابحث عن خدمة...">
 </button>
 
 
-
 </div>
 
 
@@ -124,124 +86,6 @@ placeholder="ابحث عن خدمة...">
 
 
 </section>
-
-
-
-
-
-
-
-
-
-<section class="categories">
-
-
-<div class="container">
-
-
-<h2>
-الأقسام
-</h2>
-
-
-
-<div class="cards">
-
-
-
-<div class="card" onclick="filterCategory('كهربائي')">
-
-<i class="fa-solid fa-bolt"></i>
-
-<h3>
-كهربائيين
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('سباك')">
-
-<i class="fa-solid fa-faucet"></i>
-
-<h3>
-سباكين
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('نجار')">
-
-<i class="fa-solid fa-hammer"></i>
-
-<h3>
-نجارين
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('حلاق')">
-
-<i class="fa-solid fa-scissors"></i>
-
-<h3>
-حلاقين
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('محل')">
-
-<i class="fa-solid fa-store"></i>
-
-<h3>
-محلات
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('طبيب')">
-
-<i class="fa-solid fa-user-doctor"></i>
-
-<h3>
-أطباء
-</h3>
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
 
 
 
@@ -255,15 +99,14 @@ placeholder="ابحث عن خدمة...">
 
 
 <h2>
-أحدث الخدمات
+اختر القرية
 </h2>
 
 
+<div class="service-list" id="villagesContainer">
 
-<div class="service-list">
 
 </div>
-
 
 
 </div>
@@ -275,42 +118,26 @@ placeholder="ابحث عن خدمة...">
 
 
 
-
-
-
 <footer>
 
 
 <div class="container">
 
 
-
 <h3>
-دليل خدمات ميت مسعود
+دليل خدمات مركز شبين الكوم
 </h3>
 
 
-
 <p>
-جميع خدمات القرية في مكان واحد.
+كل خدمات القرى في مكان واحد
 </p>
 
 
 
-
 <p>
-© 2026 جميع الحقوق محفوظة.
+© 2026 جميع الحقوق محفوظة
 </p>
-
-
-
-
-<a href="admin-login.html">
-
-🔐 دخول الإدارة
-
-</a>
-
 
 
 
@@ -331,8 +158,6 @@ Abdallah Badawy
 </p>
 
 
-
-
 </div>
 
 
@@ -340,16 +165,9 @@ Abdallah Badawy
 
 
 
-
-
-
-
-<script type="module" src="script.js"></script>
-
+<script src="index.js"></script>
 
 
 </body>
 
-
 </html>
-```
