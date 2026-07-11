@@ -3,170 +3,150 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>دليل خدمات مركز شبين الكوم</title>
+    <title>دليل خدمات مركز شبين الكوم</title>
 
-<meta name="description" content="دليل خدمات مركز شبين الكوم">
+    <meta name="description" content="دليل شامل لخدمات قرى مركز شبين الكوم">
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <header>
 
-<header>
+        <div class="container">
 
-<div class="container">
+            <div class="logo">
 
+                <i class="fa-solid fa-location-dot"></i>
 
-<div class="logo">
+                <span>دليل خدمات مركز شبين الكوم</span>
 
-<i class="fa-solid fa-location-dot"></i>
+            </div>
 
-دليل خدمات مركز شبين الكوم
+        </div>
 
-</div>
+    </header>
 
+    <main>
 
-</div>
+        <section class="hero">
 
-</header>
+            <div class="container">
 
+                <h1>
+                    كل خدمات مركز شبين الكوم
+                </h1>
 
+                <p>
+                    اختر قريتك للوصول لكل الخدمات بسهولة
+                </p>
 
+                <div class="search-box">
 
-<section class="hero">
+                    <input
+                        type="search"
+                        id="villageSearch"
+                        placeholder="ابحث عن قريتك..."
+                        autocomplete="off"
+                        aria-label="البحث عن قرية">
 
+                    <button
+                        type="button"
+                        id="searchButton"
+                        aria-label="بحث">
 
-<div class="container">
+                        <i class="fa-solid fa-magnifying-glass"></i>
 
+                    </button>
 
-<h1>
-كل خدمات مركز شبين الكوم
-</h1>
+                </div>
 
+            </div>
 
-<p>
-اختار قريتك للوصول لكل الخدمات بسهولة
-</p>
+        </section>
 
+        <section class="services">
 
+            <div class="container">
 
-<div class="search-box">
+                <h2>
+                    اختر القرية
+                </h2>
 
+                <div
+                    class="service-list"
+                    id="villagesContainer">
 
-<input
-type="text"
-id="villageSearch"
-placeholder="ابحث عن قريتك...">
+                </div>
 
+            </div>
 
-<button>
+        </section>
 
-<i class="fa-solid fa-magnifying-glass"></i>
+    </main>
 
-</button>
+    <footer>
 
+        <div class="container">
 
-</div>
+            <h3>
+                دليل خدمات مركز شبين الكوم
+            </h3>
 
+            <p>
+                كل خدمات القرى في مكان واحد
+            </p>
 
+            <p>
+                © <span id="year"></span> جميع الحقوق محفوظة
+            </p>
 
-</div>
+            <p class="developer">
 
+                تم التطوير بواسطة
 
-</section>
+                <br><br>
 
+                <strong>Abdallah Badawy</strong>
 
+                <br>
 
+                💻 Full Stack Web Developer
 
+                <br><br>
 
+                <strong>Omar Emad</strong>
 
-<section class="services">
+                <br>
 
+                💻 Web Developer
 
-<div class="container">
+            </p>
 
+        </div>
 
-<h2>
-اختر القرية
-</h2>
+    </footer>
 
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
 
-<div class="service-list" id="villagesContainer">
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<footer>
-
-
-<div class="container">
-
-
-<h3>
-دليل خدمات مركز شبين الكوم
-</h3>
-
-
-<p>
-كل خدمات القرى في مكان واحد
-</p>
-
-
-
-<p>
-© 2026 جميع الحقوق محفوظة
-</p>
-
-
-
-<p class="developer">
-
-تم التطوير بواسطة
-
-<br>
-
-<strong>
-Abdallah Badawy
-</strong>
-
-<br>
-
-💻 Web Developer
-
-</p>
-
-
-</div>
-
-
-</footer>
-
-
-
-<script src="index.js"></script>
-
+    <script src="index.js"></script>
 
 </body>
 

@@ -3,468 +3,486 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>دليل خدمات القرية</title>
+    <title>دليل خدمات القرية</title>
 
-<meta name="description" content="دليل خدمات القرية">
+    <meta
+        name="description"
+        content="دليل خدمات قرى مركز شبين الكوم"
+    >
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <header>
 
-<header>
+        <div class="container">
 
-<div class="container">
+            <div class="logo">
 
+                <i
+                    class="fa-solid fa-location-dot"
+                    aria-hidden="true"
+                ></i>
 
-<div class="logo">
+                <h2 id="villageTitle">
+                    دليل خدمات القرية
+                </h2>
 
-<i class="fa-solid fa-location-dot"></i>
+            </div>
 
-<h2 id="villageTitle">
-دليل خدمات القرية
-</h2>
+            <nav>
 
-</div>
+                <a href="index.html">
+                    الرئيسية
+                </a>
 
-
-<nav>
-
-<a href="index.html">
-الرئيسية
-</a>
-
-
-<a id="allServicesLink" href="all-services.html">
-كل الخدمات
-</a>
-
-
-<a id="addServiceLink" href="add-service.html">
-أضف خدمتك
-</a>
-
-
-</nav>
-
-
-</div>
-
-</header>
-
-
-
-
-
-
-<section class="hero">
-
-
-<div class="container">
-
-
-<h1 id="heroTitle">
-كل خدمات القرية
-</h1>
-
-
-<p>
-ابحث عن أي خدمة في قريتك بسهولة.
-</p>
-
-
-
-<div class="search-box">
-
-
-<input
-type="text"
-id="searchInput"
-placeholder="ابحث عن خدمة...">
-
-
-
-<button>
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="categories">
-
-
-<div class="container">
-
-
-<h2>
-أقسام الخدمات
-</h2>
-
-
-
-
-<div class="cards">
-
-
-
-
-
-<div class="card" onclick="filterCategory('health')">
-
-<i class="fa-solid fa-user-doctor"></i>
-
-<h3>
-🏥 الصحة والطوارئ
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('home')">
-
-<i class="fa-solid fa-screwdriver-wrench"></i>
-
-<h3>
-🏠 المنزل والصيانة
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('cars')">
-
-<i class="fa-solid fa-car"></i>
-
-<h3>
-🚗 السيارات والمواصلات
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('food')">
-
-<i class="fa-solid fa-utensils"></i>
-
-<h3>
-🍔 الطعام والديليفري
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('shipping')">
-
-<i class="fa-solid fa-truck"></i>
-
-<h3>
-📦 الشحن والتوصيل
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('shops')">
-
-<i class="fa-solid fa-store"></i>
-
-<h3>
-🛒 المحلات والتجارة
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('personal')">
-
-<i class="fa-solid fa-user"></i>
-
-<h3>
-💇 خدمات شخصية
-</h3>
-
-</div>
-
-
-
-
-
-<div class="card" onclick="filterCategory('general')">
-
-<i class="fa-solid fa-star"></i>
-
-<h3>
-⭐ خدمات عامة
-</h3>
-
-</div>
-
-
-
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="global-services">
-
-
-<div class="container">
-
-
-<h2>
-⭐ خدمات مهمة لكل القرى
-</h2>
-
-
-
-<div class="service-list" id="globalList">
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="services">
-
-
-<div class="container">
-
-
-<h2>
-أحدث خدمات القرية
-</h2>
-
-
-<div class="service-list">
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<footer>
-
-<div class="container">
-
-
-<h3 id="footerTitle">
-دليل خدمات القرية
-</h3>
-
-
-
-<p>
-جميع خدمات القرية في مكان واحد.
-</p>
-
-
-
-<p>
-© 2026 جميع الحقوق محفوظة.
-</p>
-
-
-
-<a href="admin-login.html">
-🔐 دخول الإدارة
-</a>
-
-
-
-
-<p class="developer">
-
-تم التطوير بواسطة
-
-<br>
-
-<strong>
-Abdallah Badawy
-</strong>
-
-<br>
-
-💻 Web Developer
-
-</p>
-
-
-
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-
-
-<script>
-
-
-const params = new URLSearchParams(window.location.search);
-
-
-const villageName = params.get("village") || "ميت مسعود";
-
-
-
-
-
-document.title =
-"دليل خدمات " + villageName;
-
-
-
-
-
-document.getElementById("villageTitle").textContent =
-"دليل خدمات " + villageName;
-
-
-
-
-
-document.getElementById("heroTitle").textContent =
-"كل خدمات قرية " + villageName;
-
-
-
-
-
-document.getElementById("footerTitle").textContent =
-"دليل خدمات " + villageName;
-
-
-
-
-
-
-const addServiceLink =
-document.getElementById("addServiceLink");
-
-
-
-addServiceLink.href =
-"add-service.html?village=" + villageName;
-
-
-
-
-
-
-
-const allServicesLink =
-document.getElementById("allServicesLink");
-
-
-
-allServicesLink.href =
-"all-services.html?village=" + villageName;
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
-<script type="module" src="script.js"></script>
-
+                <a
+                    id="allServicesLink"
+                    href="all-services.html"
+                >
+                    كل الخدمات
+                </a>
+
+                <a
+                    id="addServiceLink"
+                    href="add-service.html"
+                >
+                    أضف خدمتك
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <h1 id="heroTitle">
+                    كل خدمات القرية
+                </h1>
+
+                <p>
+                    ابحث عن أي خدمة في قريتك بسهولة
+                </p>
+
+                <div
+                    class="search-box"
+                    role="search"
+                >
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="ابحث عن خدمة..."
+                        autocomplete="off"
+                        aria-label="البحث عن خدمة"
+                    >
+
+                    <button
+                        type="button"
+                        id="searchButton"
+                        aria-label="تنفيذ البحث"
+                    >
+
+                        <i
+                            class="fa-solid fa-magnifying-glass"
+                            aria-hidden="true"
+                        ></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="categories">
+
+            <div class="container">
+
+                <h2>
+                    أقسام الخدمات
+                </h2>
+
+                <div class="cards">
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('health')"
+                        onkeydown="handleCategoryKey(event, 'health')"
+                    >
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <h3>🏥 الصحة والطوارئ</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('pharmacy')"
+                        onkeydown="handleCategoryKey(event, 'pharmacy')"
+                    >
+                        <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        <h3>💊 الصيدليات</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('education')"
+                        onkeydown="handleCategoryKey(event, 'education')"
+                    >
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <h3>🎓 التعليم والمدرسين</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('home')"
+                        onkeydown="handleCategoryKey(event, 'home')"
+                    >
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <h3>🏠 المنزل والصيانة</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('construction')"
+                        onkeydown="handleCategoryKey(event, 'construction')"
+                    >
+                        <i class="fa-solid fa-helmet-safety"></i>
+                        <h3>🏗️ البناء والتشطيبات</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('cars')"
+                        onkeydown="handleCategoryKey(event, 'cars')"
+                    >
+                        <i class="fa-solid fa-car"></i>
+                        <h3>🚗 السيارات والمواصلات</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('food')"
+                        onkeydown="handleCategoryKey(event, 'food')"
+                    >
+                        <i class="fa-solid fa-utensils"></i>
+                        <h3>🍔 الطعام والديليفري</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('shipping')"
+                        onkeydown="handleCategoryKey(event, 'shipping')"
+                    >
+                        <i class="fa-solid fa-truck"></i>
+                        <h3>📦 الشحن والتوصيل</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('shops')"
+                        onkeydown="handleCategoryKey(event, 'shops')"
+                    >
+                        <i class="fa-solid fa-store"></i>
+                        <h3>🛒 المحلات والتجارة</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('personal')"
+                        onkeydown="handleCategoryKey(event, 'personal')"
+                    >
+                        <i class="fa-solid fa-user"></i>
+                        <h3>💇 الخدمات الشخصية</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('charity')"
+                        onkeydown="handleCategoryKey(event, 'charity')"
+                    >
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                        <h3>❤️ العمل الخيري</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('agriculture')"
+                        onkeydown="handleCategoryKey(event, 'agriculture')"
+                    >
+                        <i class="fa-solid fa-seedling"></i>
+                        <h3>🌾 الزراعة والبيطرة</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('technology')"
+                        onkeydown="handleCategoryKey(event, 'technology')"
+                    >
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <h3>💻 التكنولوجيا والصيانة</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('legal')"
+                        onkeydown="handleCategoryKey(event, 'legal')"
+                    >
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <h3>⚖️ المحاماة والمحاسبة</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('events')"
+                        onkeydown="handleCategoryKey(event, 'events')"
+                    >
+                        <i class="fa-solid fa-camera"></i>
+                        <h3>🎉 المناسبات والتصوير</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('jobs')"
+                        onkeydown="handleCategoryKey(event, 'jobs')"
+                    >
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h3>💼 الوظائف والتدريب</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('government')"
+                        onkeydown="handleCategoryKey(event, 'government')"
+                    >
+                        <i class="fa-solid fa-building-columns"></i>
+                        <h3>🏛️ الخدمات الحكومية</h3>
+                    </div>
+
+                    <div
+                        class="card"
+                        role="button"
+                        tabindex="0"
+                        onclick="filterCategory('general')"
+                        onkeydown="handleCategoryKey(event, 'general')"
+                    >
+                        <i class="fa-solid fa-star"></i>
+                        <h3>⭐ خدمات عامة</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="global-services">
+
+            <div class="container">
+
+                <h2>
+                    ⭐ خدمات مهمة لكل القرى
+                </h2>
+
+                <div
+                    class="service-list"
+                    id="globalList"
+                    aria-live="polite"
+                >
+                    <p>جاري تحميل الخدمات المهمة...</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="services">
+
+            <div class="container">
+
+                <h2>
+                    أحدث خدمات القرية
+                </h2>
+
+                <div
+                    class="service-list"
+                    id="servicesList"
+                    aria-live="polite"
+                >
+                    <p>جاري تحميل خدمات القرية...</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="container">
+
+            <h3 id="footerTitle">
+                دليل خدمات القرية
+            </h3>
+
+            <p>
+                جميع خدمات القرية في مكان واحد
+            </p>
+
+            <p>
+                © <span id="year"></span>
+                جميع الحقوق محفوظة
+            </p>
+
+            <a href="admin-login.html">
+                🔐 دخول الإدارة
+            </a>
+
+            <p class="developer">
+
+                تم التطوير بواسطة
+
+                <br><br>
+
+                <strong>Abdallah Badawy</strong>
+
+                <br>
+
+                💻 Full Stack Web Developer
+
+                <br><br>
+
+                <strong>Omar Emad</strong>
+
+                <br>
+
+                💻 Web Developer
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script>
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const villageName =
+            params.get("village")?.trim() || "ميت مسعود";
+
+        const encodedVillageName =
+            encodeURIComponent(villageName);
+
+        document.title =
+            `دليل خدمات ${villageName}`;
+
+        document.getElementById("villageTitle").textContent =
+            `دليل خدمات ${villageName}`;
+
+        document.getElementById("heroTitle").textContent =
+            `كل خدمات قرية ${villageName}`;
+
+        document.getElementById("footerTitle").textContent =
+            `دليل خدمات ${villageName}`;
+
+        document.getElementById("addServiceLink").href =
+            `add-service.html?village=${encodedVillageName}`;
+
+        document.getElementById("allServicesLink").href =
+            `all-services.html?village=${encodedVillageName}`;
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        function handleCategoryKey(event, category) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+                event.preventDefault();
+                filterCategory(category);
+            }
+
+        }
+
+    </script>
+
+    <script
+        type="module"
+        src="script.js"
+    ></script>
 
 </body>
 

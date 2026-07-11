@@ -3,354 +3,327 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
+    <title>
+        كل الخدمات - دليل خدمات القرية
+    </title>
 
-<title id="pageTitle">
-كل الخدمات - دليل خدمات القرية
-</title>
+    <meta
+        name="description"
+        content="عرض جميع الخدمات المتاحة داخل قرى مركز شبين الكوم"
+    >
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="stylesheet" href="style.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <header>
 
-<header>
+        <div class="container">
 
+            <div class="logo" id="logoTitle">
 
-<div class="container">
+                <i
+                    class="fa-solid fa-location-dot"
+                    aria-hidden="true"
+                ></i>
 
+                <span>
+                    دليل خدمات القرية
+                </span>
 
-<div class="logo" id="logoTitle">
+            </div>
 
-📍 دليل خدمات القرية
+            <nav>
 
-</div>
+                <a id="homeLink" href="index.html">
+                    الرئيسية
+                </a>
 
+                <a id="villageLink" href="village.html">
+                    صفحة القرية
+                </a>
 
+                <a
+                    id="addServiceLink"
+                    href="add-service.html"
+                >
+                    أضف خدمتك
+                </a>
 
+            </nav>
 
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <h1 id="heroTitle">
+                    كل خدمات القرية
+                </h1>
+
+                <p>
+                    ابحث عن الخدمة التي تريدها بسهولة
+                </p>
+
+                <div
+                    class="search-box"
+                    role="search"
+                >
+
+                    <input
+                        type="search"
+                        id="allSearch"
+                        placeholder="ابحث عن اسم أو خدمة..."
+                        autocomplete="off"
+                        aria-label="البحث في جميع الخدمات"
+                    >
 
-<nav>
+                    <button
+                        type="button"
+                        id="allSearchButton"
+                        aria-label="تنفيذ البحث"
+                    >
 
+                        <i
+                            class="fa-solid fa-magnifying-glass"
+                            aria-hidden="true"
+                        ></i>
 
-<a id="homeLink" href="index.html">
-الرئيسية
-</a>
+                    </button>
 
+                </div>
 
-<a href="all-services.html">
-كل الخدمات
-</a>
+            </div>
 
+        </section>
 
+        <section class="services">
 
-<a id="addServiceLink" href="add-service.html">
-أضف خدمتك
-</a>
+            <div class="container">
 
+                <h2>
+                    الخدمات المتاحة
+                </h2>
 
+                <div
+                    class="category-filter"
+                    aria-label="تصفية الخدمات حسب النوع"
+                >
 
-</nav>
+                    <button
+                        type="button"
+                        class="active"
+                        data-filter=""
+                        onclick="filterAll('')"
+                    >
+                        الكل
+                    </button>
 
+                    <button
+                        type="button"
+                        data-filter="كهربائي"
+                        onclick="filterAll('كهربائي')"
+                    >
+                        كهربائي
+                    </button>
 
+                    <button
+                        type="button"
+                        data-filter="سباك"
+                        onclick="filterAll('سباك')"
+                    >
+                        سباك
+                    </button>
 
-</div>
+                    <button
+                        type="button"
+                        data-filter="نجار"
+                        onclick="filterAll('نجار')"
+                    >
+                        نجار
+                    </button>
 
+                    <button
+                        type="button"
+                        data-filter="حلاق"
+                        onclick="filterAll('حلاق')"
+                    >
+                        حلاق
+                    </button>
 
-</header>
+                    <button
+                        type="button"
+                        data-filter="طبيب"
+                        onclick="filterAll('طبيب')"
+                    >
+                        طبيب
+                    </button>
 
+                </div>
 
+                <div
+                    class="service-list"
+                    id="allServicesList"
+                    aria-live="polite"
+                >
 
+                    <div class="service-card">
 
+                        <h3>
+                            جاري تحميل الخدمات...
+                        </h3>
 
+                    </div>
 
+                </div>
 
+            </div>
 
-<section class="hero">
+        </section>
 
+    </main>
 
-<div class="container">
+    <footer>
 
+        <div class="container">
 
-<h1 id="heroTitle">
-كل خدمات القرية
-</h1>
+            <h3 id="footerTitle">
+                دليل خدمات القرية
+            </h3>
 
+            <p>
+                جميع خدمات القرية في مكان واحد
+            </p>
 
+            <p>
+                © <span id="year"></span>
+                جميع الحقوق محفوظة
+            </p>
 
-<p>
-ابحث عن الخدمة التي تريدها بسهولة.
-</p>
+            <a href="admin-login.html">
+                🔐 دخول الإدارة
+            </a>
 
+            <p class="developer">
 
+                تم التطوير بواسطة
 
+                <br><br>
 
+                <strong>
+                    Abdallah Badawy
+                </strong>
 
-<div class="search-box">
+                <br>
 
+                💻 Full Stack Web Developer
 
-<input
+                <br><br>
 
-type="text"
+                <strong>
+                    Omar Emad
+                </strong>
 
-id="allSearch"
+                <br>
 
-placeholder="ابحث عن اسم أو خدمة..."
+                💻 Web Developer
 
->
+            </p>
 
+        </div>
 
+    </footer>
 
+    <script>
 
-<button>
+        const params =
+            new URLSearchParams(window.location.search);
 
-<i class="fa-solid fa-magnifying-glass"></i>
+        const villageName =
+            params.get("village")?.trim() ||
+            "ميت مسعود";
 
-</button>
+        const encodedVillageName =
+            encodeURIComponent(villageName);
 
+        document.title =
+            `كل الخدمات - دليل خدمات ${villageName}`;
 
-</div>
+        document
+            .querySelector('meta[name="description"]')
+            .setAttribute(
+                "content",
+                `عرض جميع الخدمات المتاحة داخل ${villageName}`
+            );
 
+        document.getElementById("logoTitle").innerHTML = `
+            <i
+                class="fa-solid fa-location-dot"
+                aria-hidden="true"
+            ></i>
 
+            <span>
+                دليل خدمات ${villageName}
+            </span>
+        `;
 
-</div>
+        document.getElementById("heroTitle").textContent =
+            `كل خدمات ${villageName}`;
 
+        document.getElementById("footerTitle").textContent =
+            `دليل خدمات ${villageName}`;
 
-</section>
+        document.getElementById("addServiceLink").href =
+            `add-service.html?village=${encodedVillageName}`;
 
+        document.getElementById("villageLink").href =
+            `village.html?village=${encodedVillageName}`;
 
+        document.getElementById("homeLink").href =
+            "index.html";
 
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
 
+    </script>
 
-
-
-
-
-<section class="services">
-
-
-<div class="container">
-
-
-<h2>
-الخدمات المتاحة
-</h2>
-
-
-
-
-
-<div class="category-filter">
-
-
-<button onclick="filterAll('')">
-الكل
-</button>
-
-
-<button onclick="filterAll('كهربائي')">
-كهربائي
-</button>
-
-
-<button onclick="filterAll('سباك')">
-سباك
-</button>
-
-
-<button onclick="filterAll('نجار')">
-نجار
-</button>
-
-
-<button onclick="filterAll('حلاق')">
-حلاق
-</button>
-
-
-<button onclick="filterAll('طبيب')">
-طبيب
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="service-list">
-
-</div>
-
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<footer>
-
-
-<div class="container">
-
-
-<h3 id="footerTitle">
-دليل خدمات القرية
-</h3>
-
-
-
-<p>
-جميع خدمات القرية في مكان واحد.
-</p>
-
-
-
-<p>
-© 2026 جميع الحقوق محفوظة.
-</p>
-
-
-
-
-
-<a href="admin-login.html">
-🔐 دخول الإدارة
-</a>
-
-
-
-
-
-<p class="developer">
-
-
-تم التطوير بواسطة
-
-
-<br>
-
-
-<strong>
-Abdallah Badawy
-</strong>
-
-
-<br>
-
-
-💻 Web Developer
-
-
-</p>
-
-
-
-
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-
-
-<script>
-
-
-const params = new URLSearchParams(window.location.search);
-
-
-const villageName = params.get("village") || "ميت مسعود";
-
-
-
-
-document.title =
-"كل الخدمات - دليل خدمات " + villageName;
-
-
-
-
-document.getElementById("logoTitle").textContent =
-"📍 دليل خدمات " + villageName;
-
-
-
-
-document.getElementById("heroTitle").textContent =
-"كل خدمات " + villageName;
-
-
-
-
-document.getElementById("footerTitle").textContent =
-"دليل خدمات " + villageName;
-
-
-
-
-
-document.getElementById("addServiceLink").href =
-"add-service.html?village=" + villageName;
-
-
-
-
-document.getElementById("homeLink").href =
-"index.html?village=" + villageName;
-
-
-
-
-</script>
-
-
-
-
-
-
-
-<script type="module" src="all-services.js"></script>
-
-
+    <script
+        type="module"
+        src="all-services.js"
+    ></script>
 
 </body>
-
 
 </html>

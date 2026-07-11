@@ -1,894 +1,752 @@
 import { db } from "./firebase.js";
 
 import {
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    where
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
-
 let services = [];
-
-
-
+let globalServices = [];
 
 
 const params = new URLSearchParams(window.location.search);
 
-const villageName = params.get("village") || "ميت مسعود";
+const villageName =
+    params.get("village")?.trim() || "ميت مسعود";
 
 
+const serviceForm =
+    document.getElementById("serviceForm");
 
+const serviceList =
+    document.getElementById("servicesList");
 
+const globalList =
+    document.getElementById("globalList");
 
-const serviceForm = document.getElementById("serviceForm");
+const searchInput =
+    document.getElementById("searchInput");
 
+const searchButton =
+    document.getElementById("searchButton");
 
-const serviceList = document.querySelector(".service-list");
 
+function escapeHTML(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
-const globalList = document.getElementById("globalList");
 
+function normalizeArabicText(value) {
+    return String(value ?? "")
+        .trim()
+        .toLowerCase()
+        .replace(/[أإآ]/g, "ا")
+        .replace(/ى/g, "ي")
+        .replace(/ة/g, "ه")
+        .replace(/ؤ/g, "و")
+        .replace(/ئ/g, "ي")
+        .replace(/[\u064B-\u065F\u0670]/g, "");
+}
 
-const searchInput = document.getElementById("searchInput");
 
+function cleanPhoneNumber(phone) {
+    return String(phone ?? "")
+        .replace(/[^\d+]/g, "");
+}
 
 
+function cleanWhatsAppNumber(phone) {
 
+    let number =
+        String(phone ?? "").replace(/\D/g, "");
 
+    if (number.startsWith("00")) {
+        number = number.slice(2);
+    }
 
+    if (number.startsWith("0")) {
+        number = `20${number.slice(1)}`;
+    }
 
+    return number;
+}
 
 
-// إضافة خدمة جديدة
+function getInputValue(id) {
 
-if(serviceForm){
+    const element =
+        document.getElementById(id);
 
+    return element
+        ? element.value.trim()
+        : "";
+}
 
-serviceForm.addEventListener("submit", async function(e){
 
+function getCategoryName(category) {
 
-e.preventDefault();
+    const categories = {
+        health: "🏥 الصحة والطوارئ",
+        pharmacy: "💊 الصيدليات",
+        education: "🎓 التعليم والمدرسين",
+        home: "🏠 المنزل والصيانة",
+        construction: "🏗️ البناء والتشطيبات",
+        cars: "🚗 السيارات والمواصلات",
+        food: "🍔 الطعام والديليفري",
+        shipping: "📦 الشحن والتوصيل",
+        shops: "🛒 المحلات والتجارة",
+        personal: "💇 الخدمات الشخصية",
+        charity: "❤️ العمل الخيري",
+        agriculture: "🌾 الزراعة والبيطرة",
+        technology: "💻 التكنولوجيا والصيانة",
+        legal: "⚖️ المحاماة والمحاسبة",
+        events: "🎉 المناسبات والتصوير",
+        jobs: "💼 الوظائف والتدريب",
+        government: "🏛️ الخدمات الحكومية",
+        general: "⭐ خدمات عامة"
+    };
 
+    return categories[category] || "⭐ خدمات عامة";
+}
 
 
+function getServiceDetailsUrl(service) {
 
-const newService = {
+    return (
+        `service.html?id=${encodeURIComponent(service.id)}` +
+        `&village=${encodeURIComponent(service.village || villageName)}`
+    );
+}
 
 
-status:"pending",
+if (serviceForm) {
 
+    serviceForm.addEventListener("submit", async function (event) {
 
+        event.preventDefault();
 
-village:villageName,
+        const submitButton =
+            serviceForm.querySelector(
+                'button[type="submit"]'
+            );
 
+        const newService = {
 
+            status: "pending",
 
-category:
-document.getElementById("category").value,
+            village: villageName,
 
+            category: getInputValue("category"),
 
+            type: "village",
 
-type:
-document.getElementById("serviceType")
-?
-document.getElementById("serviceType").value
-:
-"village",
+            name: getInputValue("name"),
 
+            job: getInputValue("job"),
 
+            phone: getInputValue("phone"),
 
+            whatsapp: getInputValue("whatsapp"),
 
+            address: getInputValue("address"),
 
-name:
-document.getElementById("name").value,
+            description: getInputValue("description"),
 
+            facebook: getInputValue("facebook"),
 
+            instagram: getInputValue("instagram"),
 
-job:
-document.getElementById("job").value,
+            tiktok: getInputValue("tiktok"),
 
+            createdAt: Date.now()
 
+        };
 
-phone:
-document.getElementById("phone").value,
 
+        if (
+            !newService.name ||
+            !newService.job ||
+            !newService.phone ||
+            !newService.category
+        ) {
+            alert("يرجى إدخال الاسم والمهنة ورقم الهاتف والقسم.");
+            return;
+        }
 
 
-whatsapp:
-document.getElementById("whatsapp").value,
+        try {
 
+            if (submitButton) {
 
+                submitButton.disabled = true;
 
-address:
-document.getElementById("address").value,
+                submitButton.textContent =
+                    "جاري الإرسال...";
 
+            }
 
+            await addDoc(
+                collection(db, "services"),
+                newService
+            );
 
-description:
-document.getElementById("description").value,
+            alert(
+                "تم إرسال خدمتك للمراجعة بنجاح ✅"
+            );
 
+            serviceForm.reset();
 
+        } catch (error) {
 
-facebook:
-document.getElementById("facebook").value,
+            console.error(error);
 
+            alert(
+                "حدث خطأ أثناء إضافة الخدمة."
+            );
 
+        } finally {
 
-instagram:
-document.getElementById("instagram").value,
+            if (submitButton) {
 
+                submitButton.disabled = false;
 
+                submitButton.textContent =
+                    "إرسال البيانات";
 
-tiktok:
-document.getElementById("tiktok").value,
+            }
 
+        }
 
+    });
 
-createdAt:
-Date.now()
+}
 
+
+async function loadServices() {
+
+    if (!serviceList) {
+        return;
+    }
+
+    serviceList.innerHTML = `
+        <div class="service-card">
+            <h3>جاري تحميل خدمات القرية...</h3>
+        </div>
+    `;
+
+    try {
+
+        services = [];
+
+        const servicesQuery = query(
+            collection(db, "services"),
+            where("village", "==", villageName),
+            where("type", "==", "village"),
+            where("status", "==", "approved")
+        );
+
+        const snapshot =
+            await getDocs(servicesQuery);
+
+        snapshot.forEach((serviceDocument) => {
+
+            services.push({
+                id: serviceDocument.id,
+                ...serviceDocument.data()
+            });
+
+        });
+
+        services.sort((a, b) =>
+            (b.createdAt || 0) -
+            (a.createdAt || 0)
+        );
+
+        displayServices(services);
+
+    } catch (error) {
+
+        console.error(error);
+
+        serviceList.innerHTML = `
+            <div class="service-card">
+
+                <h3>
+                    تعذر تحميل خدمات ${escapeHTML(villageName)} ❌
+                </h3>
+
+                <p>
+                    تأكد من اتصال الإنترنت.
+                </p>
+
+                <button
+                    type="button"
+                    class="details-btn"
+                    id="retryServicesButton"
+                >
+                    إعادة المحاولة
+                </button>
+
+            </div>
+        `;
+
+        document
+            .getElementById("retryServicesButton")
+            ?.addEventListener(
+                "click",
+                loadServices
+            );
+
+    }
+
+}
+
+
+async function loadGlobalServices() {
+
+    if (!globalList) {
+        return;
+    }
+
+    globalList.innerHTML = `
+        <div class="service-card">
+            <h3>جاري تحميل الخدمات المهمة...</h3>
+        </div>
+    `;
+
+    try {
+
+        globalServices = [];
+
+        const globalQuery = query(
+            collection(db, "services"),
+            where("type", "==", "global"),
+            where("status", "==", "approved")
+        );
+
+        const snapshot =
+            await getDocs(globalQuery);
+
+        snapshot.forEach((serviceDocument) => {
+
+            globalServices.push({
+                id: serviceDocument.id,
+                ...serviceDocument.data()
+            });
+
+        });
+
+        globalServices.sort((a, b) =>
+            (b.createdAt || 0) -
+            (a.createdAt || 0)
+        );
+
+        displayGlobalServices(globalServices);
+
+    } catch (error) {
+
+        console.error(error);
+
+        globalList.innerHTML = `
+            <div class="service-card">
+                <h3>
+                    تعذر تحميل الخدمات المهمة ❌
+                </h3>
+            </div>
+        `;
+
+    }
+
+}
+
+
+function createServiceCard(
+    service,
+    isGlobal = false
+) {
+
+    const serviceName =
+        service.name || "مقدم خدمة";
+
+    const serviceJob =
+        service.job || "خدمة عامة";
+
+    const serviceVillage =
+        service.village || villageName;
+
+    const serviceAddress =
+        service.address || serviceVillage;
+
+    const serviceDescription =
+        service.description ||
+        `خدمة داخل ${serviceVillage}`;
+
+    const phone =
+        cleanPhoneNumber(service.phone);
+
+    const whatsapp =
+        cleanWhatsAppNumber(
+            service.whatsapp ||
+            service.phone
+        );
+
+    const card =
+        document.createElement("div");
+
+    card.className = "service-card";
+
+
+    const callButton = phone
+        ? `
+            <a
+                class="call"
+                href="tel:${escapeHTML(phone)}"
+            >
+                📞 اتصال
+            </a>
+        `
+        : "";
+
+
+    const whatsappButton = whatsapp
+        ? `
+            <a
+                class="whatsapp"
+                href="https://wa.me/${escapeHTML(whatsapp)}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                💬 واتساب
+            </a>
+        `
+        : "";
+
+
+    card.innerHTML = `
+
+        <h3>
+            👤 ${escapeHTML(serviceName)}
+        </h3>
+
+        <span>
+            🔧 ${escapeHTML(serviceJob)}
+        </span>
+
+        <p>
+            📂 ${escapeHTML(
+                getCategoryName(service.category)
+            )}
+        </p>
+
+        ${
+            isGlobal
+                ? `
+                    <p>
+                        ⭐ متاح لكل القرى
+                    </p>
+                `
+                : `
+                    <p>
+                        📍 ${escapeHTML(serviceAddress)}
+                    </p>
+
+                    <p>
+                        📝 ${escapeHTML(serviceDescription)}
+                    </p>
+                `
+        }
+
+        <div class="buttons">
+            ${callButton}
+            ${whatsappButton}
+        </div>
+
+        <div class="buttons service-extra-buttons">
+
+            <a
+                class="details-btn"
+                href="${getServiceDetailsUrl(service)}"
+            >
+                عرض التفاصيل
+            </a>
+
+            <button
+                type="button"
+                class="share service-share-button"
+            >
+                <i class="fa-solid fa-share-nodes"></i>
+                مشاركة
+            </button>
+
+        </div>
+    `;
+
+
+    const shareButton =
+        card.querySelector(
+            ".service-share-button"
+        );
+
+    shareButton?.addEventListener(
+        "click",
+        () => shareService(
+            service,
+            shareButton
+        )
+    );
+
+    return card;
+}
+
+
+function displayServices(data) {
+
+    if (!serviceList) {
+        return;
+    }
+
+    serviceList.innerHTML = "";
+
+    if (data.length === 0) {
+
+        serviceList.innerHTML = `
+            <div class="service-card">
+
+                <h3>
+                    لا توجد خدمات مطابقة في
+                    ${escapeHTML(villageName)} حاليًا
+                </h3>
+
+                <p>
+                    يمكنك إضافة خدمتك الآن.
+                </p>
+
+                <a
+                    class="details-btn"
+                    href="add-service.html?village=${encodeURIComponent(villageName)}"
+                >
+                    أضف خدمتك
+                </a>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    const fragment =
+        document.createDocumentFragment();
+
+    data.forEach((service) => {
+
+        fragment.appendChild(
+            createServiceCard(service)
+        );
+
+    });
+
+    serviceList.appendChild(fragment);
+}
+
+
+function displayGlobalServices(data) {
+
+    if (!globalList) {
+        return;
+    }
+
+    globalList.innerHTML = "";
+
+    if (data.length === 0) {
+
+        globalList.innerHTML = `
+            <div class="service-card">
+                <h3>
+                    لا توجد خدمات عامة حاليًا
+                </h3>
+            </div>
+        `;
+
+        return;
+    }
+
+    const fragment =
+        document.createDocumentFragment();
+
+    data.forEach((service) => {
+
+        fragment.appendChild(
+            createServiceCard(
+                service,
+                true
+            )
+        );
+
+    });
+
+    globalList.appendChild(fragment);
+}
+
+
+function searchServices() {
+
+    if (!searchInput) {
+        return;
+    }
+
+    const searchValue =
+        normalizeArabicText(
+            searchInput.value
+        );
+
+    if (!searchValue) {
+
+        displayServices(services);
+
+        return;
+    }
+
+    const filteredServices =
+        services.filter((service) => {
+
+            const searchableText =
+                normalizeArabicText([
+                    service.name,
+                    service.job,
+                    service.description,
+                    service.address,
+                    service.category,
+                    getCategoryName(
+                        service.category
+                    )
+                ].join(" "));
+
+            return searchableText.includes(
+                searchValue
+            );
+
+        });
+
+    displayServices(filteredServices);
+}
+
+
+searchInput?.addEventListener(
+    "input",
+    searchServices
+);
+
+searchButton?.addEventListener(
+    "click",
+    searchServices
+);
+
+
+window.filterCategory = function (category) {
+
+    const filteredServices =
+        services.filter(
+            (service) =>
+                service.category === category
+        );
+
+    displayServices(filteredServices);
+
+    document
+        .querySelector(".services")
+        ?.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
 };
 
 
+async function shareService(
+    service,
+    shareButton
+) {
 
+    const serviceName =
+        service.name || "خدمة";
 
+    const serviceJob =
+        service.job || "خدمة عامة";
 
+    const serviceVillage =
+        service.village || villageName;
 
+    const serviceUrl =
+        new URL(
+            getServiceDetailsUrl(service),
+            window.location.href
+        ).href;
 
-try{
+    const shareData = {
 
+        title:
+            `${serviceName} - ${serviceJob}`,
 
-await addDoc(
+        text:
+            `شاهد بيانات ${serviceName} في ${serviceVillage}`,
 
-collection(db,"services"),
+        url: serviceUrl
 
-newService
+    };
 
-);
+    try {
 
+        if (navigator.share) {
 
+            await navigator.share(
+                shareData
+            );
 
+            return;
+        }
 
-alert("تم إرسال خدمتك للمراجعة ✅");
+        await navigator.clipboard.writeText(
+            serviceUrl
+        );
 
+        const oldContent =
+            shareButton.innerHTML;
 
+        shareButton.innerHTML =
+            "✅ تم نسخ الرابط";
 
-serviceForm.reset();
+        setTimeout(() => {
 
+            shareButton.innerHTML =
+                oldContent;
 
+        }, 2000);
+
+    } catch (error) {
+
+        if (error.name !== "AbortError") {
+
+            console.error(error);
+
+            alert(
+                "تعذر مشاركة الخدمة."
+            );
+
+        }
+
+    }
 
 }
 
-
-
-catch(error){
-
-
-console.error(error);
-
-
-
-alert("حدث خطأ أثناء إضافة الخدمة");
-
-
-
-}
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// تحميل خدمات القرية
-
-async function loadServices(){
-
-
-if(!serviceList) return;
-
-
-
-try{
-
-
-
-services=[];
-
-
-
-
-const q = query(
-
-
-collection(db,"services"),
-
-
-where("village","==",villageName),
-
-
-where("type","==","village"),
-
-
-where("status","==","approved")
-
-
-
-);
-
-
-
-
-
-
-
-const snapshot = await getDocs(q);
-
-
-
-
-
-
-snapshot.forEach((doc)=>{
-
-
-services.push({
-
-
-id:doc.id,
-
-
-...doc.data()
-
-
-});
-
-
-
-});
-
-
-
-
-
-
-
-services.sort((a,b)=>
-
-
-(b.createdAt || 0)
-
-
--
-
-
-(a.createdAt || 0)
-
-
-);
-
-
-
-
-
-
-displayServices(services);
-
-
-
-
-}
-
-
-
-catch(error){
-
-
-console.error(error);
-
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// تحميل الخدمات العامة لكل القرى
-
-async function loadGlobalServices(){
-
-
-if(!globalList) return;
-
-
-
-try{
-
-
-
-const q = query(
-
-
-collection(db,"services"),
-
-
-where("type","==","global"),
-
-
-where("status","==","approved")
-
-
-
-);
-
-
-
-
-
-
-const snapshot = await getDocs(q);
-
-
-
-
-
-
-let globalServices=[];
-
-
-
-
-
-snapshot.forEach((doc)=>{
-
-
-globalServices.push({
-
-
-id:doc.id,
-
-
-...doc.data()
-
-
-});
-
-
-});
-
-
-
-
-
-
-displayGlobalServices(globalServices);
-
-
-
-}
-
-
-
-catch(error){
-
-
-console.error(error);
-
-
-
-}
-
-
-
-}
-// عرض خدمات القرية
-
-function displayServices(data){
-
-
-if(!serviceList) return;
-
-
-
-serviceList.innerHTML="";
-
-
-
-
-if(data.length===0){
-
-
-serviceList.innerHTML=`
-
-<div class="service-card">
-
-
-<h3>
-لا توجد خدمات في ${villageName} حاليا ❌
-</h3>
-
-
-<p>
-كن أول من يضيف خدمتك.
-</p>
-
-
-</div>
-
-`;
-
-
-return;
-
-
-}
-
-
-
-
-
-data.forEach(service=>{
-
-
-
-serviceList.innerHTML += `
-
-
-<div class="service-card">
-
-
-<h3>
-👤 ${service.name}
-</h3>
-
-
-
-
-<span>
-🔧 ${service.job}
-</span>
-
-
-
-
-
-<p>
-📂 ${getCategoryName(service.category)}
-</p>
-
-
-
-
-<p>
-📍 ${service.address || service.village}
-</p>
-
-
-
-
-<p>
-📝 ${service.description || "خدمة داخل القرية"}
-</p>
-
-
-
-
-
-<div class="buttons">
-
-
-
-<a class="call"
-
-href="tel:${service.phone}">
-
-📞 اتصال
-
-</a>
-
-
-
-
-
-
-<a class="whatsapp"
-
-href="https://wa.me/${service.whatsapp || service.phone}"
-
-target="_blank">
-
-💬 واتساب
-
-</a>
-
-
-
-
-</div>
-
-
-
-
-
-<br>
-
-
-
-
-<a class="details-btn"
-
-href="service.html?id=${service.id}&village=${villageName}">
-
-عرض التفاصيل
-
-</a>
-
-
-
-
-
-</div>
-
-
-
-`;
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-// عرض الخدمات العامة
-
-function displayGlobalServices(data){
-
-
-if(!globalList) return;
-
-
-
-globalList.innerHTML="";
-
-
-
-
-
-if(data.length===0){
-
-
-
-globalList.innerHTML=`
-
-<div class="service-card">
-
-
-<h3>
-لا توجد خدمات عامة حاليا
-</h3>
-
-
-</div>
-
-`;
-
-return;
-
-
-}
-
-
-
-
-
-data.forEach(service=>{
-
-
-
-globalList.innerHTML += `
-
-
-<div class="service-card">
-
-
-<h3>
-👤 ${service.name}
-</h3>
-
-
-
-<span>
-🔧 ${service.job}
-</span>
-
-
-
-<p>
-📂 ${getCategoryName(service.category)}
-</p>
-
-
-
-<p>
-⭐ متاح لكل القرى
-</p>
-
-
-
-
-
-<div class="buttons">
-
-
-
-<a class="call"
-
-href="tel:${service.phone}">
-
-📞 اتصال
-
-</a>
-
-
-
-
-
-<a class="whatsapp"
-
-href="https://wa.me/${service.whatsapp || service.phone}"
-
-target="_blank">
-
-💬 واتساب
-
-</a>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-`;
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// أسماء الأقسام
-
-function getCategoryName(category){
-
-
-const categories = {
-
-
-health:"🏥 الصحة والطوارئ",
-
-home:"🏠 المنزل والصيانة",
-
-cars:"🚗 السيارات والمواصلات",
-
-food:"🍔 الطعام والديليفري",
-
-shipping:"📦 الشحن والتوصيل",
-
-shops:"🛒 المحلات والتجارة",
-
-personal:"💇 خدمات شخصية",
-
-general:"⭐ خدمات عامة"
-
-
-};
-
-
-
-return categories[category] || "⭐ خدمات عامة";
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// البحث
-
-if(searchInput){
-
-
-
-searchInput.addEventListener("keyup",function(){
-
-
-
-let value = searchInput.value.toLowerCase();
-
-
-
-
-
-let filtered = services.filter(service =>
-
-
-
-(service.name && service.name.toLowerCase().includes(value))
-
-
-||
-
-
-(service.job && service.job.toLowerCase().includes(value))
-
-
-||
-
-
-(service.description && service.description.toLowerCase().includes(value))
-
-
-||
-
-
-(service.category && service.category.toLowerCase().includes(value))
-
-
-
-);
-
-
-
-
-
-displayServices(filtered);
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// فلترة الأقسام
-
-window.filterCategory=function(category){
-
-
-
-let filtered = services.filter(service =>
-
-
-
-service.category === category
-
-
-
-);
-
-
-
-
-displayServices(filtered);
-
-
-
-
-
-const servicesSection = document.querySelector(".services");
-
-
-
-if(servicesSection){
-
-
-window.scrollTo({
-
-top:servicesSection.offsetTop,
-
-behavior:"smooth"
-
-});
-
-
-}
-
-
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-// تشغيل التحميل
 
 loadServices();
-
 loadGlobalServices();

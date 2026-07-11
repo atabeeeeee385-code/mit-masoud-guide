@@ -3,437 +3,365 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title id="pageTitle">
-أضف خدمتك
-</title>
+    <title>أضف خدمتك</title>
 
+    <meta
+        name="description"
+        content="أضف خدمتك إلى دليل خدمات قرى مركز شبين الكوم"
+    >
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+    <header>
 
+        <div class="container">
 
-<header>
+            <div
+                class="logo"
+                id="logoTitle"
+            >
+                📍 دليل خدمات القرية
+            </div>
 
-<div class="container">
+        </div>
 
+    </header>
 
-<div class="logo" id="logoTitle">
+    <main>
 
-📍 دليل خدمات القرية
+        <section class="hero">
 
-</div>
+            <div class="container">
 
+                <h1 id="heroTitle">
+                    أضف خدمتك
+                </h1>
 
-</div>
+                <p>
+                    سجل بياناتك ليجدك أهل القرية بسهولة
+                </p>
 
-</header>
+            </div>
 
+        </section>
 
+        <section>
 
+            <div class="container">
 
+                <div class="service-card">
 
+                    <form id="serviceForm">
 
-<section class="hero">
+                        <label for="name">
+                            الاسم
+                        </label>
 
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="اكتب اسمك"
+                            maxlength="100"
+                            required
+                        >
 
-<div class="container">
+                        <label for="category">
+                            القسم
+                        </label>
 
+                        <select
+                            id="category"
+                            name="category"
+                            required
+                        >
 
-<h1 id="heroTitle">
+                            <option value="">
+                                اختر القسم
+                            </option>
 
-أضف خدمتك
+                            <option value="health">
+                                🏥 الصحة والطوارئ
+                            </option>
 
-</h1>
+                            <option value="pharmacy">
+                                💊 الصيدليات
+                            </option>
 
+                            <option value="education">
+                                🎓 التعليم والمدرسين
+                            </option>
 
-<p>
+                            <option value="home">
+                                🏠 المنزل والصيانة
+                            </option>
 
-سجل بياناتك ليجدك أهل القرية بسهولة
+                            <option value="construction">
+                                🏗️ البناء والتشطيبات
+                            </option>
 
-</p>
+                            <option value="cars">
+                                🚗 السيارات والمواصلات
+                            </option>
+
+                            <option value="food">
+                                🍔 الطعام والديليفري
+                            </option>
+
+                            <option value="shipping">
+                                📦 الشحن والتوصيل
+                            </option>
+
+                            <option value="shops">
+                                🛒 المحلات والتجارة
+                            </option>
+
+                            <option value="personal">
+                                💇 الخدمات الشخصية
+                            </option>
+
+                            <option value="charity">
+                                ❤️ العمل الخيري
+                            </option>
+
+                            <option value="agriculture">
+                                🌾 الزراعة والبيطرة
+                            </option>
+
+                            <option value="technology">
+                                💻 التكنولوجيا والصيانة
+                            </option>
+
+                            <option value="legal">
+                                ⚖️ المحاماة والمحاسبة
+                            </option>
+
+                            <option value="events">
+                                🎉 المناسبات والتصوير
+                            </option>
+
+                            <option value="jobs">
+                                💼 الوظائف والتدريب
+                            </option>
+
+                            <option value="government">
+                                🏛️ الخدمات الحكومية
+                            </option>
+
+                            <option value="general">
+                                ⭐ خدمات عامة
+                            </option>
+
+                        </select>
+
+                        <label for="job">
+                            المهنة أو الخدمة
+                        </label>
+
+                        <input
+                            type="text"
+                            id="job"
+                            name="job"
+                            placeholder="مثال: مدرس - صيدلية - كهربائي"
+                            maxlength="120"
+                            required
+                        >
+
+                        <label for="phone">
+                            رقم الهاتف
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="010xxxxxxxx"
+                            maxlength="20"
+                            required
+                        >
+
+                        <label for="whatsapp">
+                            رقم الواتساب
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                            name="whatsapp"
+                            placeholder="010xxxxxxxx أو 2010xxxxxxxx"
+                            maxlength="20"
+                        >
+
+                        <label for="address">
+                            العنوان
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="اكتب العنوان"
+                            maxlength="200"
+                        >
 
+                        <label for="description">
+                            وصف الخدمة
+                        </label>
 
-</div>
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="اكتب تفاصيل عن خدمتك"
+                            rows="5"
+                            maxlength="1000"
+                        ></textarea>
 
+                        <label for="facebook">
+                            رابط صفحة فيسبوك
+                        </label>
 
-</section>
+                        <input
+                            type="url"
+                            id="facebook"
+                            name="facebook"
+                            placeholder="https://facebook.com/..."
+                        >
 
+                        <label for="instagram">
+                            رابط إنستجرام
+                        </label>
 
+                        <input
+                            type="url"
+                            id="instagram"
+                            name="instagram"
+                            placeholder="https://instagram.com/..."
+                        >
 
+                        <label for="tiktok">
+                            رابط تيك توك
+                        </label>
 
+                        <input
+                            type="url"
+                            id="tiktok"
+                            name="tiktok"
+                            placeholder="https://tiktok.com/@..."
+                        >
 
+                        <button
+                            type="submit"
+                            id="submitServiceButton"
+                        >
+                            إرسال البيانات
+                        </button>
 
+                    </form>
 
-<section>
+                </div>
 
+            </div>
 
-<div class="container">
+        </section>
 
+    </main>
 
-<div class="service-card">
+    <footer>
 
+        <div class="container">
 
+            <h3 id="footerTitle">
+                دليل خدمات القرية
+            </h3>
 
-<form id="serviceForm">
+            <p>
+                جميع خدمات القرية في مكان واحد
+            </p>
 
+            <p>
+                © <span id="year"></span>
+                جميع الحقوق محفوظة
+            </p>
 
+            <p class="developer">
 
+                تم التطوير بواسطة
 
+                <br><br>
 
-<label>
-الاسم
-</label>
+                <strong>Abdallah Badawy</strong>
 
+                <br>
 
-<input 
-type="text" 
-id="name" 
-placeholder="اكتب اسمك"
-required>
+                💻 Full Stack Web Developer
 
+                <br><br>
 
+                <strong>Omar Emad</strong>
 
+                <br>
 
+                💻 Web Developer
 
+            </p>
 
+        </div>
 
-<label>
-القسم
-</label>
+    </footer>
 
+    <script>
 
-<select id="category" required>
+        const params =
+            new URLSearchParams(window.location.search);
 
+        const villageName =
+            params.get("village")?.trim() || "ميت مسعود";
 
-<option value="">
-اختر القسم
-</option>
+        document.title =
+            `أضف خدمتك - دليل خدمات ${villageName}`;
 
+        document.getElementById("logoTitle").textContent =
+            `📍 دليل خدمات ${villageName}`;
 
-<option value="health">
-🏥 الصحة والطوارئ
-</option>
+        document.getElementById("heroTitle").textContent =
+            `أضف خدمتك في دليل ${villageName}`;
 
+        document.getElementById("footerTitle").textContent =
+            `دليل خدمات ${villageName}`;
 
-<option value="home">
-🏠 المنزل والصيانة
-</option>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
 
+    </script>
 
-<option value="cars">
-🚗 السيارات والمواصلات
-</option>
-
-
-<option value="food">
-🍔 الطعام والديليفري
-</option>
-
-
-<option value="shipping">
-📦 الشحن والتوصيل
-</option>
-
-
-<option value="shops">
-🛒 المحلات والتجارة
-</option>
-
-
-<option value="personal">
-💇 خدمات شخصية
-</option>
-
-
-<option value="general">
-⭐ خدمات عامة
-</option>
-
-
-
-</select>
-
-
-
-
-
-
-
-<label>
-المهنة أو الخدمة
-</label>
-
-
-<input 
-type="text" 
-id="job" 
-placeholder="مثال: دكتور - كهربائي - سائق"
-required>
-
-
-
-
-
-
-
-<label>
-رقم الهاتف
-</label>
-
-
-<input 
-type="text" 
-id="phone" 
-placeholder="010xxxxxxxx"
-required>
-
-
-
-
-
-
-
-<label>
-رقم الواتساب
-</label>
-
-
-<input 
-type="text" 
-id="whatsapp" 
-placeholder="2010xxxxxxxx">
-
-
-
-
-
-
-
-<label>
-العنوان
-</label>
-
-
-<input 
-type="text" 
-id="address" 
-placeholder="اكتب العنوان">
-
-
-
-
-
-
-
-<label>
-وصف الخدمة
-</label>
-
-
-<textarea 
-id="description" 
-placeholder="اكتب تفاصيل عن خدمتك"></textarea>
-
-
-
-
-
-
-
-<label>
-رابط صفحة فيسبوك
-</label>
-
-
-<input 
-type="url" 
-id="facebook">
-
-
-
-
-
-
-
-<label>
-رابط إنستجرام
-</label>
-
-
-<input 
-type="url" 
-id="instagram">
-
-
-
-
-
-
-
-<label>
-رابط تيك توك
-</label>
-
-
-<input 
-type="url" 
-id="tiktok">
-
-
-
-
-
-
-
-<button type="submit">
-
-إرسال البيانات
-
-</button>
-
-
-
-</form>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<footer>
-
-
-<div class="container">
-
-
-<h3 id="footerTitle">
-
-دليل خدمات القرية
-
-</h3>
-
-
-
-
-<p>
-جميع خدمات القرية في مكان واحد.
-</p>
-
-
-
-
-<p>
-© 2026 جميع الحقوق محفوظة.
-</p>
-
-
-
-
-
-<p class="developer">
-
-تم التطوير بواسطة
-
-<br>
-
-<strong>
-Abdallah Badawy
-</strong>
-
-<br>
-
-💻 Web Developer
-
-</p>
-
-
-
-
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-
-
-<script>
-
-
-const params = new URLSearchParams(window.location.search);
-
-
-const villageName = params.get("village") || "ميت مسعود";
-
-
-
-
-document.title =
-
-"أضف خدمتك - دليل خدمات " + villageName;
-
-
-
-
-document.getElementById("logoTitle").textContent =
-
-"📍 دليل خدمات " + villageName;
-
-
-
-
-document.getElementById("heroTitle").textContent =
-
-"أضف خدمتك في دليل " + villageName;
-
-
-
-
-document.getElementById("footerTitle").textContent =
-
-"دليل خدمات " + villageName;
-
-
-
-</script>
-
-
-
-
-
-
-
-<script type="module" src="script.js"></script>
-
+    <script
+        type="module"
+        src="script.js"
+    ></script>
 
 </body>
 

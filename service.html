@@ -3,172 +3,201 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
+    <title id="pageTitle">
+        تفاصيل الخدمة
+    </title>
 
-<title id="pageTitle">
-تفاصيل الخدمة
-</title>
+    <meta
+        name="description"
+        content="تفاصيل وبيانات الخدمة في دليل خدمات مركز شبين الكوم"
+    >
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="stylesheet" href="style.css">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
 
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
-
-
 <body>
 
+    <header>
 
+        <div class="container">
 
+            <div class="logo" id="logoTitle">
 
-<header>
+                <i
+                    class="fa-solid fa-location-dot"
+                    aria-hidden="true"
+                ></i>
 
+                <span>
+                    دليل خدمات القرية
+                </span>
 
-<div class="container">
+            </div>
 
+        </div>
 
-<div class="logo" id="logoTitle">
+    </header>
 
-📍 دليل خدمات القرية
+    <main>
 
-</div>
+        <section class="hero">
 
+            <div class="container">
 
-</div>
+                <h1>
+                    تفاصيل الخدمة
+                </h1>
 
+                <p>
+                    بيانات مقدم الخدمة وطرق التواصل
+                </p>
 
-</header>
+            </div>
 
+        </section>
 
+        <section class="service-details-section">
 
+            <div class="container">
 
+                <div
+                    class="service-card"
+                    id="serviceDetails"
+                    aria-live="polite"
+                >
 
+                    <p>
+                        جاري تحميل بيانات الخدمة...
+                    </p>
 
+                </div>
 
+                <div class="service-actions">
 
-<section class="hero">
+                    <button
+                        type="button"
+                        class="share"
+                        id="shareServiceButton"
+                    >
 
+                        <i
+                            class="fa-solid fa-share-nodes"
+                            aria-hidden="true"
+                        ></i>
 
-<div class="container">
+                        مشاركة الخدمة
 
+                    </button>
 
-<h1>
-تفاصيل الخدمة
-</h1>
+                    <button
+                        type="button"
+                        class="back-button"
+                        id="backButton"
+                    >
 
+                        <i
+                            class="fa-solid fa-arrow-right"
+                            aria-hidden="true"
+                        ></i>
 
+                        رجوع
 
-<p>
-بيانات مقدم الخدمة
-</p>
+                    </button>
 
+                </div>
 
+            </div>
 
-</div>
+        </section>
 
+    </main>
 
-</section>
+    <footer>
 
+        <div class="container">
 
+            <h3 id="footerTitle">
+                دليل خدمات القرية
+            </h3>
 
+            <p>
+                جميع خدمات القرية في مكان واحد
+            </p>
 
+            <p>
+                © <span id="year"></span>
+                جميع الحقوق محفوظة
+            </p>
 
+            <p class="developer">
 
+                تم التطوير بواسطة
 
+                <br><br>
 
-<section>
+                <strong>
+                    Abdallah Badawy
+                </strong>
 
+                <br>
 
-<div class="container">
+                💻 Full Stack Web Developer
 
+                <br><br>
 
-<div class="service-card" id="serviceDetails">
+                <strong>
+                    Omar Emad
+                </strong>
 
-</div>
+                <br>
 
+                💻 Web Developer
 
-</div>
+            </p>
 
+        </div>
 
-</section>
+    </footer>
 
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
 
+        const backButton =
+            document.getElementById("backButton");
 
+        backButton.addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
 
-
-
-
-
-
-<footer>
-
-
-<div class="container">
-
-
-<h3 id="footerTitle">
-دليل خدمات القرية
-</h3>
-
-
-
-<p>
-جميع خدمات القرية في مكان واحد.
-</p>
-
-
-
-<p>
-© 2026 جميع الحقوق محفوظة.
-</p>
-
-
-
-
-
-<p class="developer">
-
-تم التطوير بواسطة
-
-<br>
-
-<strong>
-Abdallah Badawy
-</strong>
-
-<br>
-
-💻 Web Developer
-
-</p>
-
-
-
-</div>
-
-
-</footer>
-
-
-
-
-
-
-
-<script type="module" src="service.js"></script>
-
-
+    <script type="module" src="service.js"></script>
 
 </body>
 
