@@ -17,6 +17,45 @@
         content="أضف خدمتك إلى دليل خدمات قرى مركز شبين الكوم"
     >
 
+    <!-- إعدادات PWA -->
+
+    <meta
+        name="theme-color"
+        content="#1565c0"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png"
+    >
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
@@ -30,7 +69,10 @@
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
 
 </head>
 
@@ -104,81 +146,26 @@
                                 اختر القسم
                             </option>
 
-                            <option value="health">
-                                🏥 الصحة والطوارئ
-                            </option>
-
-                            <option value="pharmacy">
-                                💊 الصيدليات
-                            </option>
-
-                            <option value="education">
-                                🎓 التعليم والمدرسين
-                            </option>
-
-                            <option value="home">
-                                🏠 المنزل والصيانة
-                            </option>
-
-                            <option value="construction">
-                                🏗️ البناء والتشطيبات
-                            </option>
-
-                            <option value="cars">
-                                🚗 السيارات والمواصلات
-                            </option>
-
-                            <option value="food">
-                                🍔 الطعام والديليفري
-                            </option>
-
-                            <option value="shipping">
-                                📦 الشحن والتوصيل
-                            </option>
-
-                            <option value="shops">
-                                🛒 المحلات والتجارة
-                            </option>
-
-                            <option value="personal">
-                                💇 الخدمات الشخصية
-                            </option>
-
-                            <option value="charity">
-                                ❤️ العمل الخيري
-                            </option>
-
-                            <option value="agriculture">
-                                🌾 الزراعة والبيطرة
-                            </option>
-
-                            <option value="technology">
-                                💻 التكنولوجيا والصيانة
-                            </option>
-
-                            <option value="legal">
-                                ⚖️ المحاماة والمحاسبة
-                            </option>
-
-                            <option value="events">
-                                🎉 المناسبات والتصوير
-                            </option>
-
-                            <option value="jobs">
-                                💼 الوظائف والتدريب
-                            </option>
-
-                            <option value="government">
-                                🏛️ الخدمات الحكومية
-                            </option>
-
-                            <option value="general">
-                                ⭐ خدمات عامة
-                            </option>
-
+                            <option value="health">🏥 الصحة والطوارئ</option>
+                            <option value="pharmacy">💊 الصيدليات</option>
+                            <option value="education">🎓 التعليم والمدرسين</option>
+                            <option value="home">🏠 المنزل والصيانة</option>
+                            <option value="construction">🏗️ البناء والتشطيبات</option>
+                            <option value="cars">🚗 السيارات والمواصلات</option>
+                            <option value="food">🍔 الطعام والديليفري</option>
+                            <option value="shipping">📦 الشحن والتوصيل</option>
+                            <option value="shops">🛒 المحلات والتجارة</option>
+                            <option value="personal">💇 الخدمات الشخصية</option>
+                            <option value="charity">❤️ العمل الخيري</option>
+                            <option value="agriculture">🌾 الزراعة والبيطرة</option>
+                            <option value="technology">💻 التكنولوجيا والصيانة</option>
+                            <option value="legal">⚖️ المحاماة والمحاسبة</option>
+                            <option value="events">🎉 المناسبات والتصوير</option>
+                            <option value="jobs">💼 الوظائف والتدريب</option>
+                            <option value="government">🏛️ الخدمات الحكومية</option>
+                            <option value="general">⭐ خدمات عامة</option>
                         </select>
-
-                        <label for="job">
+                                                <label for="job">
                             المهنة أو الخدمة
                         </label>
 
@@ -289,8 +276,7 @@
         </section>
 
     </main>
-
-    <footer>
+        <footer>
 
         <div class="container">
 
@@ -313,7 +299,9 @@
 
                 <br><br>
 
-                <strong>Abdallah Badawy</strong>
+                <strong>
+                    Abdallah Badawy
+                </strong>
 
                 <br>
 
@@ -321,7 +309,9 @@
 
                 <br><br>
 
-                <strong>Omar Emad</strong>
+                <strong>
+                    Omar Emad
+                </strong>
 
                 <br>
 
@@ -339,7 +329,8 @@
             new URLSearchParams(window.location.search);
 
         const villageName =
-            params.get("village")?.trim() || "ميت مسعود";
+            params.get("village")?.trim() ||
+            "ميت مسعود";
 
         document.title =
             `أضف خدمتك - دليل خدمات ${villageName}`;
@@ -360,8 +351,8 @@
 
     <script
         type="module"
-        src="script.js"
-    ></script>
+        src="./script.js">
+    </script>
 
 </body>
 

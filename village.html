@@ -17,6 +17,40 @@
         content="دليل خدمات قرى مركز شبين الكوم"
     >
 
+    <!-- PWA -->
+
+    <meta
+        name="theme-color"
+        content="#1565c0">
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes">
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default">
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين">
+
+    <link
+        rel="manifest"
+        href="./manifest.json">
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png">
+
+    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
@@ -30,10 +64,14 @@
         rel="stylesheet"
     >
 
+    <!-- Icons -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     >
+
+    <!-- CSS -->
 
     <link rel="stylesheet" href="style.css">
 
@@ -85,8 +123,7 @@
     </header>
 
     <main>
-
-        <section class="hero">
+                <section class="hero">
 
             <div class="container">
 
@@ -100,27 +137,24 @@
 
                 <div
                     class="search-box"
-                    role="search"
-                >
+                    role="search">
 
                     <input
                         type="search"
                         id="searchInput"
                         placeholder="ابحث عن خدمة..."
                         autocomplete="off"
-                        aria-label="البحث عن خدمة"
-                    >
+                        aria-label="البحث عن خدمة">
 
                     <button
                         type="button"
                         id="searchButton"
-                        aria-label="تنفيذ البحث"
-                    >
+                        aria-label="تنفيذ البحث">
 
                         <i
                             class="fa-solid fa-magnifying-glass"
-                            aria-hidden="true"
-                        ></i>
+                            aria-hidden="true">
+                        </i>
 
                     </button>
 
@@ -145,10 +179,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('health')"
-                        onkeydown="handleCategoryKey(event, 'health')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'health')">
+
                         <i class="fa-solid fa-user-doctor"></i>
+
                         <h3>🏥 الصحة والطوارئ</h3>
+
                     </div>
 
                     <div
@@ -156,10 +192,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('pharmacy')"
-                        onkeydown="handleCategoryKey(event, 'pharmacy')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'pharmacy')">
+
                         <i class="fa-solid fa-prescription-bottle-medical"></i>
+
                         <h3>💊 الصيدليات</h3>
+
                     </div>
 
                     <div
@@ -167,10 +205,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('education')"
-                        onkeydown="handleCategoryKey(event, 'education')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'education')">
+
                         <i class="fa-solid fa-graduation-cap"></i>
+
                         <h3>🎓 التعليم والمدرسين</h3>
+
                     </div>
 
                     <div
@@ -178,10 +218,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('home')"
-                        onkeydown="handleCategoryKey(event, 'home')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'home')">
+
                         <i class="fa-solid fa-screwdriver-wrench"></i>
+
                         <h3>🏠 المنزل والصيانة</h3>
+
                     </div>
 
                     <div
@@ -189,10 +231,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('construction')"
-                        onkeydown="handleCategoryKey(event, 'construction')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'construction')">
+
                         <i class="fa-solid fa-helmet-safety"></i>
+
                         <h3>🏗️ البناء والتشطيبات</h3>
+
                     </div>
 
                     <div
@@ -200,10 +244,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('cars')"
-                        onkeydown="handleCategoryKey(event, 'cars')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'cars')">
+
                         <i class="fa-solid fa-car"></i>
+
                         <h3>🚗 السيارات والمواصلات</h3>
+
                     </div>
 
                     <div
@@ -211,10 +257,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('food')"
-                        onkeydown="handleCategoryKey(event, 'food')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'food')">
+
                         <i class="fa-solid fa-utensils"></i>
+
                         <h3>🍔 الطعام والديليفري</h3>
+
                     </div>
 
                     <div
@@ -222,21 +270,24 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('shipping')"
-                        onkeydown="handleCategoryKey(event, 'shipping')"
-                    >
-                        <i class="fa-solid fa-truck"></i>
-                        <h3>📦 الشحن والتوصيل</h3>
-                    </div>
+                        onkeydown="handleCategoryKey(event, 'shipping')">
 
-                    <div
+                        <i class="fa-solid fa-truck"></i>
+
+                        <h3>📦 الشحن والتوصيل</h3>
+
+                    </div>
+                                        <div
                         class="card"
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('shops')"
-                        onkeydown="handleCategoryKey(event, 'shops')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'shops')">
+
                         <i class="fa-solid fa-store"></i>
+
                         <h3>🛒 المحلات والتجارة</h3>
+
                     </div>
 
                     <div
@@ -244,10 +295,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('personal')"
-                        onkeydown="handleCategoryKey(event, 'personal')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'personal')">
+
                         <i class="fa-solid fa-user"></i>
+
                         <h3>💇 الخدمات الشخصية</h3>
+
                     </div>
 
                     <div
@@ -255,10 +308,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('charity')"
-                        onkeydown="handleCategoryKey(event, 'charity')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'charity')">
+
                         <i class="fa-solid fa-hand-holding-heart"></i>
+
                         <h3>❤️ العمل الخيري</h3>
+
                     </div>
 
                     <div
@@ -266,10 +321,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('agriculture')"
-                        onkeydown="handleCategoryKey(event, 'agriculture')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'agriculture')">
+
                         <i class="fa-solid fa-seedling"></i>
+
                         <h3>🌾 الزراعة والبيطرة</h3>
+
                     </div>
 
                     <div
@@ -277,10 +334,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('technology')"
-                        onkeydown="handleCategoryKey(event, 'technology')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'technology')">
+
                         <i class="fa-solid fa-laptop-code"></i>
+
                         <h3>💻 التكنولوجيا والصيانة</h3>
+
                     </div>
 
                     <div
@@ -288,10 +347,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('legal')"
-                        onkeydown="handleCategoryKey(event, 'legal')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'legal')">
+
                         <i class="fa-solid fa-scale-balanced"></i>
+
                         <h3>⚖️ المحاماة والمحاسبة</h3>
+
                     </div>
 
                     <div
@@ -299,10 +360,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('events')"
-                        onkeydown="handleCategoryKey(event, 'events')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'events')">
+
                         <i class="fa-solid fa-camera"></i>
+
                         <h3>🎉 المناسبات والتصوير</h3>
+
                     </div>
 
                     <div
@@ -310,10 +373,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('jobs')"
-                        onkeydown="handleCategoryKey(event, 'jobs')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'jobs')">
+
                         <i class="fa-solid fa-briefcase"></i>
+
                         <h3>💼 الوظائف والتدريب</h3>
+
                     </div>
 
                     <div
@@ -321,10 +386,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('government')"
-                        onkeydown="handleCategoryKey(event, 'government')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'government')">
+
                         <i class="fa-solid fa-building-columns"></i>
+
                         <h3>🏛️ الخدمات الحكومية</h3>
+
                     </div>
 
                     <div
@@ -332,10 +399,12 @@
                         role="button"
                         tabindex="0"
                         onclick="filterCategory('general')"
-                        onkeydown="handleCategoryKey(event, 'general')"
-                    >
+                        onkeydown="handleCategoryKey(event, 'general')">
+
                         <i class="fa-solid fa-star"></i>
+
                         <h3>⭐ خدمات عامة</h3>
+
                     </div>
 
                 </div>
@@ -355,16 +424,18 @@
                 <div
                     class="service-list"
                     id="globalList"
-                    aria-live="polite"
-                >
-                    <p>جاري تحميل الخدمات المهمة...</p>
+                    aria-live="polite">
+
+                    <p>
+                        جاري تحميل الخدمات المهمة...
+                    </p>
+
                 </div>
 
             </div>
 
         </section>
-
-        <section class="services">
+                <section class="services">
 
             <div class="container">
 
@@ -375,9 +446,12 @@
                 <div
                     class="service-list"
                     id="servicesList"
-                    aria-live="polite"
-                >
-                    <p>جاري تحميل خدمات القرية...</p>
+                    aria-live="polite">
+
+                    <p>
+                        جاري تحميل خدمات القرية...
+                    </p>
+
                 </div>
 
             </div>
@@ -413,7 +487,9 @@
 
                 <br><br>
 
-                <strong>Abdallah Badawy</strong>
+                <strong>
+                    Abdallah Badawy
+                </strong>
 
                 <br>
 
@@ -421,7 +497,9 @@
 
                 <br><br>
 
-                <strong>Omar Emad</strong>
+                <strong>
+                    Omar Emad
+                </strong>
 
                 <br>
 
@@ -433,7 +511,39 @@
 
     </footer>
 
-    <script>
+    <button
+        type="button"
+        id="installAppBtn"
+        class="install-app-btn"
+        hidden>
+
+        <i class="fa-solid fa-download"></i>
+
+        <span>
+            تثبيت التطبيق
+        </span>
+
+    </button>
+
+    <div
+        id="updateNotification"
+        class="update-notification"
+        hidden>
+
+        <span>
+            يوجد تحديث جديد للتطبيق
+        </span>
+
+        <button
+            type="button"
+            id="updateAppBtn">
+
+            تحديث الآن
+
+        </button>
+
+    </div>
+        <script>
 
         const params =
             new URLSearchParams(window.location.search);
@@ -471,8 +581,11 @@
                 event.key === "Enter" ||
                 event.key === " "
             ) {
+
                 event.preventDefault();
+
                 filterCategory(category);
+
             }
 
         }
@@ -481,8 +594,8 @@
 
     <script
         type="module"
-        src="script.js"
-    ></script>
+        src="script.js">
+    </script>
 
 </body>
 

@@ -19,7 +19,51 @@
         content="عرض جميع الخدمات المتاحة داخل قرى مركز شبين الكوم"
     >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- إعدادات PWA -->
+
+    <meta
+        name="theme-color"
+        content="#1565c0"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png"
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png"
+    >
+
+    <!-- الخطوط -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
     <link
         rel="preconnect"
@@ -32,12 +76,19 @@
         rel="stylesheet"
     >
 
+    <!-- Font Awesome -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <!-- ملف التصميم -->
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
 
 </head>
 
@@ -47,7 +98,10 @@
 
         <div class="container">
 
-            <div class="logo" id="logoTitle">
+            <div
+                class="logo"
+                id="logoTitle"
+            >
 
                 <i
                     class="fa-solid fa-location-dot"
@@ -62,17 +116,23 @@
 
             <nav>
 
-                <a id="homeLink" href="index.html">
+                <a
+                    id="homeLink"
+                    href="./index.html"
+                >
                     الرئيسية
                 </a>
 
-                <a id="villageLink" href="village.html">
+                <a
+                    id="villageLink"
+                    href="./village.html"
+                >
                     صفحة القرية
                 </a>
 
                 <a
                     id="addServiceLink"
-                    href="add-service.html"
+                    href="./add-service.html"
                 >
                     أضف خدمتك
                 </a>
@@ -232,7 +292,7 @@
                 جميع الحقوق محفوظة
             </p>
 
-            <a href="admin-login.html">
+            <a href="./admin-login.html">
                 🔐 دخول الإدارة
             </a>
 
@@ -281,47 +341,101 @@
         document.title =
             `كل الخدمات - دليل خدمات ${villageName}`;
 
-        document
-            .querySelector('meta[name="description"]')
-            .setAttribute(
+        const descriptionMeta =
+            document.querySelector('meta[name="description"]');
+
+        if (descriptionMeta) {
+
+            descriptionMeta.setAttribute(
                 "content",
                 `عرض جميع الخدمات المتاحة داخل ${villageName}`
             );
 
-        document.getElementById("logoTitle").innerHTML = `
-            <i
-                class="fa-solid fa-location-dot"
-                aria-hidden="true"
-            ></i>
+        }
 
-            <span>
-                دليل خدمات ${villageName}
-            </span>
-        `;
+        const logoTitle =
+            document.getElementById("logoTitle");
 
-        document.getElementById("heroTitle").textContent =
-            `كل خدمات ${villageName}`;
+        const heroTitle =
+            document.getElementById("heroTitle");
 
-        document.getElementById("footerTitle").textContent =
-            `دليل خدمات ${villageName}`;
+        const footerTitle =
+            document.getElementById("footerTitle");
 
-        document.getElementById("addServiceLink").href =
-            `add-service.html?village=${encodedVillageName}`;
+        const addServiceLink =
+            document.getElementById("addServiceLink");
 
-        document.getElementById("villageLink").href =
-            `village.html?village=${encodedVillageName}`;
+        const villageLink =
+            document.getElementById("villageLink");
 
-        document.getElementById("homeLink").href =
-            "index.html";
+        const homeLink =
+            document.getElementById("homeLink");
 
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+        const yearElement =
+            document.getElementById("year");
+
+        if (logoTitle) {
+
+            logoTitle.innerHTML = `
+                <i
+                    class="fa-solid fa-location-dot"
+                    aria-hidden="true"
+                ></i>
+
+                <span>
+                    دليل خدمات ${villageName}
+                </span>
+            `;
+
+        }
+
+        if (heroTitle) {
+
+            heroTitle.textContent =
+                `كل خدمات ${villageName}`;
+
+        }
+
+        if (footerTitle) {
+
+            footerTitle.textContent =
+                `دليل خدمات ${villageName}`;
+
+        }
+
+        if (addServiceLink) {
+
+            addServiceLink.href =
+                `./add-service.html?village=${encodedVillageName}`;
+
+        }
+
+        if (villageLink) {
+
+            villageLink.href =
+                `./village.html?village=${encodedVillageName}`;
+
+        }
+
+        if (homeLink) {
+
+            homeLink.href =
+                "./index.html";
+
+        }
+
+        if (yearElement) {
+
+            yearElement.textContent =
+                new Date().getFullYear();
+
+        }
 
     </script>
 
     <script
         type="module"
-        src="all-services.js"
+        src="./all-services.js"
     ></script>
 
 </body>

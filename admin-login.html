@@ -7,8 +7,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0">
 
     <title>
         دخول الإدارة - دليل خدمات مركز شبين الكوم
@@ -16,23 +15,54 @@
 
     <meta
         name="description"
-        content="تسجيل دخول إدارة دليل خدمات مركز شبين الكوم"
-    >
+        content="تسجيل دخول إدارة دليل خدمات مركز شبين الكوم">
+
+    <!-- إعدادات PWA -->
+
+    <meta
+        name="theme-color"
+        content="#1565c0">
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes">
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default">
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين">
+
+    <link
+        rel="manifest"
+        href="./manifest.json">
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="./style.css">
 
 </head>
 
@@ -87,20 +117,18 @@
                             placeholder="اكتب كلمة المرور"
                             autocomplete="current-password"
                             minlength="6"
-                            required
-                        >
+                            required>
 
                         <button
                             type="submit"
-                            id="loginButton"
-                        >
+                            id="loginButton">
                             دخول
                         </button>
 
                         <p
                             id="loginMessage"
-                            aria-live="polite"
-                        ></p>
+                            aria-live="polite">
+                        </p>
 
                     </form>
 
@@ -160,14 +188,16 @@
     </footer>
 
     <script>
+
         document.getElementById("year").textContent =
             new Date().getFullYear();
+
     </script>
 
     <script
         type="module"
-        src="admin-login.js"
-    ></script>
+        src="./admin-login.js">
+    </script>
 
 </body>
 
