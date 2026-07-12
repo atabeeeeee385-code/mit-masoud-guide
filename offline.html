@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#1565c0">
+
+    <title>لا يوجد اتصال بالإنترنت</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Cairo", sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1565c0,
+                    #00a86b
+                );
+
+            color: #222;
+        }
+
+        .offline-card {
+            width: 100%;
+            max-width: 470px;
+
+            padding: 40px 25px;
+
+            background: white;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.22);
+
+            text-align: center;
+        }
+
+        .offline-icon {
+            width: 100px;
+            height: 100px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef6ff;
+
+            border-radius: 50%;
+
+            font-size: 50px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+
+            color: #1565c0;
+
+            font-size: 28px;
+        }
+
+        p {
+            margin-bottom: 25px;
+
+            color: #6b7280;
+
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .retry-button {
+            width: 100%;
+
+            padding: 14px 20px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #00a86b;
+            color: white;
+
+            font-size: 16px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background-color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .retry-button:hover {
+            background: #008f5a;
+
+            transform: translateY(-2px);
+        }
+
+        .home-link {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            color: #1565c0;
+
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+
+            .offline-card {
+                padding: 30px 20px;
+            }
+
+            .offline-icon {
+                width: 85px;
+                height: 85px;
+
+                font-size: 42px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="offline-card">
+
+        <div
+            class="offline-icon"
+            aria-hidden="true">
+
+            📡
+
+        </div>
+
+        <h1>
+            لا يوجد اتصال بالإنترنت
+        </h1>
+
+        <p>
+            تعذر تحميل الصفحة حاليًا.
+            تأكد من اتصالك بالإنترنت،
+            ثم اضغط على زر إعادة المحاولة.
+        </p>
+
+        <button
+            type="button"
+            class="retry-button"
+            onclick="window.location.reload()">
+
+            إعادة المحاولة
+
+        </button>
+
+        <a
+            class="home-link"
+            href="./index.html">
+
+            العودة للصفحة الرئيسية
+
+        </a>
+
+    </main>
+
+</body>
+
+</html>

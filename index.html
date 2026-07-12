@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -9,18 +10,60 @@
 
     <title>دليل خدمات مركز شبين الكوم</title>
 
-    <meta name="description" content="دليل شامل لخدمات قرى مركز شبين الكوم">
+    <meta
+        name="description"
+        content="دليل شامل لخدمات قرى مركز شبين الكوم">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="theme-color"
+        content="#1565c0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes">
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default">
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين">
+
+    <link
+        rel="manifest"
+        href="./manifest.json">
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet"
+    <link
+        rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="./style.css">
 
 </head>
 
@@ -32,15 +75,21 @@
 
             <div class="logo">
 
-                <i class="fa-solid fa-location-dot"></i>
+                <i
+                    class="fa-solid fa-location-dot"
+                    aria-hidden="true">
+                </i>
 
-                <span>دليل خدمات مركز شبين الكوم</span>
+                <span>
+                    دليل خدمات مركز شبين الكوم
+                </span>
 
             </div>
 
         </div>
 
     </header>
+
 
     <main>
 
@@ -68,9 +117,12 @@
                     <button
                         type="button"
                         id="searchButton"
-                        aria-label="بحث">
+                        aria-label="تنفيذ البحث">
 
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i
+                            class="fa-solid fa-magnifying-glass"
+                            aria-hidden="true">
+                        </i>
 
                     </button>
 
@@ -79,6 +131,7 @@
             </div>
 
         </section>
+
 
         <section class="services">
 
@@ -90,8 +143,8 @@
 
                 <div
                     class="service-list"
-                    id="villagesContainer">
-
+                    id="villagesContainer"
+                    aria-live="polite">
                 </div>
 
             </div>
@@ -99,6 +152,48 @@
         </section>
 
     </main>
+
+
+    <button
+        type="button"
+        id="installAppBtn"
+        class="install-app-btn"
+        aria-label="تثبيت تطبيق دليل شبين"
+        hidden>
+
+        <i
+            class="fa-solid fa-download"
+            aria-hidden="true">
+        </i>
+
+        <span>
+            تثبيت التطبيق
+        </span>
+
+    </button>
+
+
+    <div
+        id="updateNotification"
+        class="update-notification"
+        role="alert"
+        aria-live="assertive"
+        hidden>
+
+        <span>
+            يوجد تحديث جديد للتطبيق
+        </span>
+
+        <button
+            type="button"
+            id="updateAppBtn">
+
+            تحديث الآن
+
+        </button>
+
+    </div>
+
 
     <footer>
 
@@ -113,7 +208,9 @@
             </p>
 
             <p>
-                © <span id="year"></span> جميع الحقوق محفوظة
+                ©
+                <span id="year"></span>
+                جميع الحقوق محفوظة
             </p>
 
             <p class="developer">
@@ -122,7 +219,9 @@
 
                 <br><br>
 
-                <strong>Abdallah Badawy</strong>
+                <strong>
+                    Abdallah Badawy
+                </strong>
 
                 <br>
 
@@ -130,7 +229,9 @@
 
                 <br><br>
 
-                <strong>Omar Emad</strong>
+                <strong>
+                    Omar Emad
+                </strong>
 
                 <br>
 
@@ -142,12 +243,10 @@
 
     </footer>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
 
-    <script src="index.js"></script>
+    <script src="./index.js"></script>
 
 </body>
 
 </html>
+
