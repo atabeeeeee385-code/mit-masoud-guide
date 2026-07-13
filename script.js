@@ -733,19 +733,42 @@ async function shareService(
 
     } catch (error) {
 
-        if (error.name !== "AbortError") {
+    console.error(
+        "خطأ إضافة الخدمة:",
+        error.code,
+        error.message
+    );
 
-            console.error(error);
+    if (
+        error.code ===
+        "permission-denied"
+    ) {
 
-            alert(
-                "تعذر مشاركة الخدمة."
-            );
+        alert(
+            "Firebase رفض حفظ الخدمة. تأكد من نشر قواعد Firestore وأن البيانات مطابقة للشروط."
+        );
 
-        }
+    } else if (
+        error.code ===
+        "unavailable"
+    ) {
+
+        alert(
+            "تعذر الاتصال بـ Firebase. تحقق من الإنترنت وحاول مرة أخرى."
+        );
+
+    } else {
+
+        alert(
+            `حدث خطأ أثناء إضافة الخدمة:\n${error.code || error.message}`
+        );
 
     }
 
 }
+    }
+
+
 
 
 loadServices();
