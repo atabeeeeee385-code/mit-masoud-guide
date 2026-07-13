@@ -15,9 +15,19 @@ let globalServices = [];
 
 const params = new URLSearchParams(window.location.search);
 
-const villageName =
-    params.get("village")?.trim() || "ميت مسعود";
+const villageFromUrl =
+    params.get("village")?.trim() || "";
 
+const villageSelect =
+    document.getElementById("village");
+
+if (
+    villageSelect &&
+    villageFromUrl
+) {
+    villageSelect.value =
+        villageFromUrl;
+}
 
 const serviceForm =
     document.getElementById("serviceForm");
@@ -173,12 +183,13 @@ if (serviceForm) {
 
 
         if (
-            !newService.name ||
-            !newService.job ||
-            !newService.phone ||
-            !newService.category
-        ) {
-            alert("يرجى إدخال الاسم والمهنة ورقم الهاتف والقسم.");
+    !newService.name ||
+    !newService.job ||
+    !newService.phone ||
+    !newService.category ||
+    !newService.village
+      ) {
+            alert("يرجى إدخال الاسم والمهنة ورقم الهاتف والقسم واختيار القرية .");
             return;
         }
 
