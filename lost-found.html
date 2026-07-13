@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <title>
+        الموجودات والمفقودات - دليل شبين
+    </title>
+
+    <meta
+        name="description"
+        content="عرض بلاغات الموجودات والمفقودات داخل قرى مركز شبين الكوم">
+
+    <meta
+        name="theme-color"
+        content="#1565c0">
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes">
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default">
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="دليل شبين">
+
+    <link
+        rel="manifest"
+        href="./manifest.json">
+
+    <link
+        rel="apple-touch-icon"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="192x192"
+        href="./icons/icon-192.png">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="./style.css">
+
+</head>
+
+<body>
+
+    <div
+        id="offlineBanner"
+        class="offline-banner"
+        hidden>
+
+        <i class="fa-solid fa-wifi"></i>
+
+        لا يوجد اتصال بالإنترنت
+
+    </div>
+
+
+    <header class="site-header">
+
+        <div class="container header-content">
+
+            <a
+                href="./index.html"
+                class="brand"
+                aria-label="الصفحة الرئيسية">
+
+                <span class="brand-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        دليل شبين
+                    </strong>
+
+                    <small>
+                        الموجودات والمفقودات
+                    </small>
+
+                </span>
+
+            </a>
+
+            <a
+                href="./index.html"
+                class="villages-back-button">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+                الرئيسية
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="lost-found-page-hero">
+
+            <div class="container">
+
+                <span class="lost-found-page-badge">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                    مجتمع شبين
+
+                </span>
+
+                <h1>
+                    الموجودات والمفقودات
+                </h1>
+
+                <p>
+
+                    فقدت شيئًا أو عثرت على شيء؟
+                    أضف بلاغًا وساعدنا في الوصول إلى صاحبه.
+
+                </p>
+
+                <div class="lost-found-main-actions">
+
+                    <a
+                        href="./add-lost-found.html?type=lost"
+                        class="lost-report-main-button">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        أبلغ عن مفقود
+
+                    </a>
+
+                    <a
+                        href="./add-lost-found.html?type=found"
+                        class="found-report-main-button">
+
+                        <i class="fa-solid fa-hand-holding"></i>
+
+                        أبلغ عن موجود
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="lost-found-tools-section">
+
+            <div class="container">
+
+                <div class="lost-found-tools-card">
+
+                    <div class="lost-found-search-box">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="lostFoundSearch"
+                            placeholder="ابحث عن محفظة، هاتف، بطاقة..."
+                            autocomplete="off"
+                            aria-label="البحث في البلاغات">
+
+                        <button
+                            type="button"
+                            id="lostFoundSearchButton">
+
+                            بحث
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="lost-found-filters"
+                        aria-label="تصفية البلاغات">
+
+                        <button
+                            type="button"
+                            class="active"
+                            data-filter="all">
+
+                            الكل
+
+                        </button>
+
+                        <button
+                            type="button"
+                            data-filter="lost">
+
+                            <i class="fa-solid fa-circle-exclamation"></i>
+
+                            مفقودات
+
+                        </button>
+
+                        <button
+                            type="button"
+                            data-filter="found">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            موجودات
+
+                        </button>
+
+                        <button
+                            type="button"
+                            data-filter="resolved">
+
+                            <i class="fa-solid fa-handshake"></i>
+
+                            تم التسليم
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="lost-found-selects">
+
+                        <div>
+
+                            <label for="lostFoundVillageFilter">
+                                القرية
+                            </label>
+
+                            <select id="lostFoundVillageFilter">
+
+                                <option value="">
+                                    كل القرى
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label for="lostFoundCategoryFilter">
+                                نوع الشيء
+                            </label>
+
+                            <select id="lostFoundCategoryFilter">
+
+                                <option value="">
+                                    كل الأنواع
+                                </option>
+
+                                <option value="محفظة">
+                                    محفظة
+                                </option>
+
+                                <option value="هاتف">
+                                    هاتف
+                                </option>
+
+                                <option value="بطاقة">
+                                    بطاقة
+                                </option>
+
+                                <option value="مفاتيح">
+                                    مفاتيح
+                                </option>
+
+                                <option value="حقيبة">
+                                    حقيبة
+                                </option>
+
+                                <option value="مستندات">
+                                    مستندات
+                                </option>
+
+                                <option value="حيوان">
+                                    حيوان
+                                </option>
+
+                                <option value="أخرى">
+                                    أخرى
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="lost-found-content-section">
+
+            <div class="container">
+
+                <div class="lost-found-section-heading">
+
+                    <div>
+
+                        <span>
+                            أحدث البلاغات
+                        </span>
+
+                        <h2>
+                            البلاغات المتاحة
+                        </h2>
+
+                    </div>
+
+                    <div class="lost-found-count-box">
+
+                        <i class="fa-solid fa-list"></i>
+
+                        <strong id="lostFoundReportsCount">
+                            0
+                        </strong>
+
+                        <span>
+                            بلاغ
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="lostFoundReportsList"
+                    class="lost-found-reports-grid"
+                    aria-live="polite">
+
+                    <div class="lost-found-loading-card">
+
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+
+                        <h3>
+                            جاري تحميل البلاغات...
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="lost-found-ai-section">
+
+            <div class="container">
+
+                <div class="lost-found-ai-card">
+
+                    <div class="lost-found-ai-icon">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span>
+                            قريبًا
+                        </span>
+
+                        <h2>
+                            المطابقة الذكية بين البلاغات
+                        </h2>
+
+                        <p>
+
+                            سيقوم النظام بمقارنة الوصف والمكان والتاريخ
+                            والصور لإظهار البلاغات المتشابهة ونسبة التطابق.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <div>
+
+                <h3>
+                    دليل خدمات مركز شبين الكوم
+                </h3>
+
+                <p>
+                    ساعدنا في إعادة المفقودات إلى أصحابها.
+                </p>
+
+            </div>
+
+            <div class="developer">
+
+                <p>
+                    تم التطوير بواسطة
+                </p>
+
+                <strong>
+                    Abdallah Badawy
+                </strong>
+
+                <br>
+
+                💻 Full Stack Web Developer
+
+                <br><br>
+
+                <strong>
+                    Omar Emad
+                </strong>
+
+                <br>
+
+                💻 Web Developer
+
+            </div>
+
+            <p>
+
+                ©
+                <span id="year"></span>
+                جميع الحقوق محفوظة
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <nav
+        class="mobile-nav"
+        aria-label="التنقل الرئيسي">
+
+        <a href="./index.html">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                الرئيسية
+            </span>
+
+        </a>
+
+        <a href="./villages.html">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+
+            <span>
+                القرى
+            </span>
+
+        </a>
+
+        <a
+            href="./lost-found.html"
+            class="active">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <span>
+                المفقودات
+            </span>
+
+        </a>
+
+        <a href="./add-lost-found.html">
+
+            <i class="fa-solid fa-circle-plus"></i>
+
+            <span>
+                إضافة بلاغ
+            </span>
+
+        </a>
+
+    </nav>
+
+
+    <button
+        type="button"
+        id="installAppBtn"
+        class="install-app-btn"
+        hidden>
+
+        <i class="fa-solid fa-download"></i>
+
+        تثبيت التطبيق
+
+    </button>
+
+
+    <div
+        id="updateNotification"
+        class="update-notification"
+        hidden>
+
+        <span>
+            يوجد تحديث جديد للتطبيق
+        </span>
+
+        <button
+            type="button"
+            id="updateAppBtn">
+
+            تحديث الآن
+
+        </button>
+
+    </div>
+
+
+    <script
+        type="module"
+        src="./lost-found.js">
+    </script>
+
+</body>
+
+</html>

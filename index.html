@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -6,13 +5,17 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <title>دليل خدمات مركز شبين الكوم</title>
+    <title>
+        دليل خدمات مركز شبين الكوم
+    </title>
 
     <meta
         name="description"
-        content="دليل شامل لخدمات قرى مركز شبين الكوم">
+        content="منصة ذكية لخدمات قرى مركز شبين الكوم والموجودات والمفقودات">
 
     <meta
         name="theme-color"
@@ -54,7 +57,7 @@
         crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <link
@@ -69,20 +72,71 @@
 
 <body>
 
-    <header>
+    <div
+        id="offlineBanner"
+        class="offline-banner"
+        hidden>
 
-        <div class="container">
+        <i class="fa-solid fa-wifi"></i>
 
-            <div class="logo">
+        لا يوجد اتصال بالإنترنت
 
-                <i
-                    class="fa-solid fa-location-dot"
-                    aria-hidden="true">
-                </i>
+    </div>
 
-                <span>
-                    دليل خدمات مركز شبين الكوم
+
+    <header class="site-header">
+
+        <div class="container header-content">
+
+            <a
+                href="./index.html"
+                class="brand"
+                aria-label="الصفحة الرئيسية">
+
+                <span class="brand-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
                 </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        دليل شبين
+                    </strong>
+
+                    <small>
+                        كل خدمات مركز شبين الكوم
+                    </small>
+
+                </span>
+
+            </a>
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    id="notificationButton"
+                    class="icon-button"
+                    aria-label="تفعيل الإشعارات">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                </button>
+
+                <button
+                    type="button"
+                    id="headerInstallButton"
+                    class="header-install-button">
+
+                    <i class="fa-solid fa-download"></i>
+
+                    <span>
+                        تثبيت التطبيق
+                    </span>
+
+                </button>
 
             </div>
 
@@ -93,36 +147,283 @@
 
     <main>
 
-        <section class="hero">
+        <section class="hero-section">
+
+            <div class="hero-bg hero-bg-1"></div>
+
+            <div class="hero-bg hero-bg-2"></div>
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+
+                        <i class="fa-solid fa-sparkles"></i>
+
+                        منصة خدمات ذكية
+
+                    </span>
+
+                    <h1>
+
+                        كل خدمات
+
+                        <span>
+                            مركز شبين الكوم
+                        </span>
+
+                        في مكان واحد
+
+                    </h1>
+
+                    <p>
+
+                        ابحث عن أي خدمة، اختر القسم المناسب،
+                        أو استكشف جميع قرى مركز شبين الكوم بسهولة.
+
+                    </p>
+
+                    <div
+                        class="hero-search"
+                        role="search">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="villageSearch"
+                            placeholder="ابحث عن خدمة أو قرية..."
+                            autocomplete="off"
+                            aria-label="البحث في المنصة">
+
+                        <button
+                            type="button"
+                            id="searchButton">
+
+                            بحث
+
+                        </button>
+
+                    </div>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="./villages.html"
+                            class="primary-btn">
+
+                            <i class="fa-solid fa-map-location-dot"></i>
+
+                            استكشف القرى
+
+                        </a>
+
+                        <button
+                            type="button"
+                            id="heroInstallButton"
+                            class="secondary-btn">
+
+                            <i class="fa-solid fa-download"></i>
+
+                            تثبيت التطبيق
+
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="locationMessage"
+                        class="location-message"
+                        aria-live="polite">
+                    </p>
+
+                </div>
+
+                <div class="hero-card">
+
+                    <div class="phone">
+
+                        <div class="phone-header">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <div class="phone-body">
+
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+
+                            <h3>
+                                دليل شبين
+                            </h3>
+
+                            <p>
+                                منصة ذكية لخدمات القرى
+                            </p>
+
+                            <div class="phone-status">
+
+                                <i class="fa-solid fa-bolt"></i>
+
+                                يتم تحديث المنصة باستمرار
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="quick-section">
 
             <div class="container">
 
-                <h1>
-                    كل خدمات مركز شبين الكوم
-                </h1>
+                <div class="section-title">
 
-                <p>
-                    اختر قريتك للوصول لكل الخدمات بسهولة
-                </p>
+                    <span>
+                        الخدمات السريعة
+                    </span>
 
-                <div class="search-box">
+                    <h2>
+                        اختر القسم الذي تريده
+                    </h2>
 
-                    <input
-                        type="search"
-                        id="villageSearch"
-                        placeholder="ابحث عن قريتك..."
-                        autocomplete="off"
-                        aria-label="البحث عن قرية">
+                </div>
+
+                <div class="quick-grid">
+
+                    <a
+                        href="./villages.html"
+                        class="quick-card">
+
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-user-doctor"></i>
+
+                        </div>
+
+                        <h3>
+                            الصحة
+                        </h3>
+
+                        <p>
+                            أطباء وعيادات ومعامل
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="./villages.html"
+                        class="quick-card">
+
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-prescription-bottle-medical"></i>
+
+                        </div>
+
+                        <h3>
+                            الصيدليات
+                        </h3>
+
+                        <p>
+                            صيدليات وخدمات دوائية
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="./villages.html"
+                        class="quick-card">
+
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        </div>
+
+                        <h3>
+                            الصيانة
+                        </h3>
+
+                        <p>
+                            كهربائي وسباك ونجار
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="./villages.html"
+                        class="quick-card">
+
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-graduation-cap"></i>
+
+                        </div>
+
+                        <h3>
+                            التعليم
+                        </h3>
+
+                        <p>
+                            مدرسون ومراكز تعليمية
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="./villages.html"
+                        class="quick-card">
+
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+
+                        </div>
+
+                        <h3>
+                            العمل الخيري
+                        </h3>
+
+                        <p>
+                            جمعيات ومبادرات خيرية
+                        </p>
+
+                    </a>
+
 
                     <button
                         type="button"
-                        id="searchButton"
-                        aria-label="تنفيذ البحث">
+                        id="lostFoundQuickButton"
+                        class="quick-card">
 
-                        <i
-                            class="fa-solid fa-magnifying-glass"
-                            aria-hidden="true">
-                        </i>
+                        <div class="quick-icon">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                        </div>
+
+                        <h3>
+                            موجودات ومفقودات
+                        </h3>
+
+                        <p>
+                            أبلغ عن شيء مفقود أو موجود
+                        </p>
 
                     </button>
 
@@ -133,18 +434,276 @@
         </section>
 
 
-        <section class="services">
+        <section class="feature-section">
 
             <div class="container">
 
-                <h2>
-                    اختر القرية
-                </h2>
+                <div class="feature-card">
 
-                <div
-                    class="service-list"
-                    id="villagesContainer"
-                    aria-live="polite">
+                    <div>
+
+                        <span class="feature-badge">
+
+                            <i class="fa-solid fa-fire"></i>
+
+                            ميزة اليوم
+
+                        </span>
+
+                        <h2 id="dailyFeatureTitle">
+
+                            ثبّت دليل شبين كتطبيق
+
+                        </h2>
+
+                        <p id="dailyFeatureText">
+
+                            ادخل إلى المنصة بسرعة من شاشة هاتفك الرئيسية.
+
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="dailyFeatureButton">
+
+                        جرّب الآن
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            class="lost-found-section"
+            id="lostFound">
+
+            <div class="container">
+
+                <div class="lost-found-box">
+
+                    <div class="lost-left">
+
+                        <span>
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                            قسم جديد
+
+                        </span>
+
+                        <h2>
+                            الموجودات والمفقودات
+                        </h2>
+
+                        <p>
+
+                            أبلغ عن شيء مفقود أو موجود،
+                            وسيتم لاحقًا مقارنة البلاغات المتشابهة
+                            باستخدام نظام المطابقة الذكية.
+
+                        </p>
+
+                        <div class="lost-buttons">
+
+                            <button
+                                type="button"
+                                id="reportLostButton">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                                أبلغ عن مفقود
+
+                            </button>
+
+                            <button
+                                type="button"
+                                id="reportFoundButton">
+
+                                <i class="fa-solid fa-hand-holding"></i>
+
+                                أبلغ عن موجود
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="ai-card">
+
+                        <h3>
+
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                            المطابقة الذكية
+
+                        </h3>
+
+                        <p>
+
+                            قريبًا سيقوم النظام بمقارنة الوصف
+                            والمكان والتاريخ والصور
+                            للوصول إلى أقرب تطابق محتمل.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="stats-section">
+
+            <div class="container">
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <h2 id="villagesCount">
+                            39
+                        </h2>
+
+                        <span>
+                            قرية ومنطقة
+                        </span>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h2>
+                            +100
+                        </h2>
+
+                        <span>
+                            نوع خدمة
+                        </span>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h2>
+                            5
+                        </h2>
+
+                        <span>
+                            نجوم للتقييم
+                        </span>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h2>
+                            PWA
+                        </h2>
+
+                        <span>
+                            يعمل كتطبيق
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="explore-villages-section">
+
+            <div class="container">
+
+                <div class="explore-villages-card">
+
+                    <div class="explore-icon">
+
+                        <i class="fa-solid fa-map-location-dot"></i>
+
+                    </div>
+
+                    <div class="explore-content">
+
+                        <span>
+                            قرى مركز شبين الكوم
+                        </span>
+
+                        <h2>
+                            استكشف جميع القرى
+                        </h2>
+
+                        <p>
+
+                            خصصنا صفحة مستقلة لعرض جميع القرى
+                            بشكل منظم وسريع مع إمكانية البحث باسم القرية.
+
+                        </p>
+
+                        <a
+                            href="./villages.html"
+                            class="explore-btn">
+
+                            <i class="fa-solid fa-arrow-left"></i>
+
+                            استكشف القرى
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="notification-section">
+
+            <div class="container">
+
+                <div class="notification-card">
+
+                    <div>
+
+                        <h2>
+
+                            <i class="fa-regular fa-bell"></i>
+
+                            لا يفوتك أي جديد
+
+                        </h2>
+
+                        <p>
+
+                            فعّل الإشعارات لمعرفة الخدمات الجديدة
+                            وآخر تحديثات المنصة.
+
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="enableNotificationsButton">
+
+                        تفعيل الإشعارات
+
+                    </button>
+
                 </div>
 
             </div>
@@ -154,21 +713,121 @@
     </main>
 
 
+    <footer>
+
+        <div class="container footer-content">
+
+            <div>
+
+                <h3>
+                    دليل خدمات مركز شبين الكوم
+                </h3>
+
+                <p>
+                    كل خدمات القرى في مكان واحد.
+                </p>
+
+            </div>
+
+            <div class="developer">
+
+                <p>
+                    تم التطوير بواسطة
+                </p>
+
+                <strong>
+                    Abdallah Badawy
+                </strong>
+
+                <br>
+
+                💻 Full Stack Web Developer
+
+                <br><br>
+
+                <strong>
+                    Omar Emad
+                </strong>
+
+                <br>
+
+                💻 Web Developer
+
+            </div>
+
+            <p>
+
+                ©
+                <span id="year"></span>
+                جميع الحقوق محفوظة
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <nav
+        class="mobile-nav"
+        aria-label="التنقل الرئيسي">
+
+        <a
+            href="./index.html"
+            class="active">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>
+                الرئيسية
+            </span>
+
+        </a>
+
+        <a href="./villages.html">
+
+            <i class="fa-solid fa-map-location-dot"></i>
+
+            <span>
+                القرى
+            </span>
+
+        </a>
+
+        <button
+            type="button"
+            id="mobileLostFoundButton">
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <span>
+                المفقودات
+            </span>
+
+        </button>
+
+        <a href="./add-service.html">
+
+            <i class="fa-solid fa-circle-plus"></i>
+
+            <span>
+                أضف خدمة
+            </span>
+
+        </a>
+
+    </nav>
+
+
     <button
         type="button"
         id="installAppBtn"
         class="install-app-btn"
-        aria-label="تثبيت تطبيق دليل شبين"
         hidden>
 
-        <i
-            class="fa-solid fa-download"
-            aria-hidden="true">
-        </i>
+        <i class="fa-solid fa-download"></i>
 
-        <span>
-            تثبيت التطبيق
-        </span>
+        تثبيت التطبيق
 
     </button>
 
@@ -195,58 +854,8 @@
     </div>
 
 
-    <footer>
-
-        <div class="container">
-
-            <h3>
-                دليل خدمات مركز شبين الكوم
-            </h3>
-
-            <p>
-                كل خدمات القرى في مكان واحد
-            </p>
-
-            <p>
-                ©
-                <span id="year"></span>
-                جميع الحقوق محفوظة
-            </p>
-
-            <p class="developer">
-
-                تم التطوير بواسطة
-
-                <br><br>
-
-                <strong>
-                    Abdallah Badawy
-                </strong>
-
-                <br>
-
-                💻 Full Stack Web Developer
-
-                <br><br>
-
-                <strong>
-                    Omar Emad
-                </strong>
-
-                <br>
-
-                💻 Web Developer
-
-            </p>
-
-        </div>
-
-    </footer>
-
-
     <script src="./index.js"></script>
 
 </body>
 
 </html>
-

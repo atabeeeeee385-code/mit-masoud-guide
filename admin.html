@@ -7,8 +7,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
     <title>
         لوحة الإدارة - دليل خدمات مركز شبين الكوم
@@ -16,92 +15,115 @@
 
     <meta
         name="description"
-        content="لوحة إدارة خدمات قرى مركز شبين الكوم"
-    >
-
-    <!-- إعدادات PWA -->
+        content="لوحة إدارة الخدمات وبلاغات الموجودات والمفقودات">
 
     <meta
         name="theme-color"
-        content="#1565c0"
-    >
+        content="#1565c0">
 
     <meta
         name="apple-mobile-web-app-capable"
-        content="yes"
-    >
+        content="yes">
 
     <meta
         name="apple-mobile-web-app-status-bar-style"
-        content="default"
-    >
+        content="default">
 
     <meta
         name="apple-mobile-web-app-title"
-        content="دليل شبين"
-    >
+        content="دليل شبين">
 
     <link
         rel="manifest"
-        href="./manifest.json"
-    >
+        href="./manifest.json">
 
     <link
         rel="apple-touch-icon"
-        href="./icons/icon-192.png"
-    >
+        href="./icons/icon-192.png">
 
     <link
         rel="icon"
         type="image/png"
         sizes="192x192"
-        href="./icons/icon-192.png"
-    >
+        href="./icons/icon-192.png">
 
     <link
         rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+        href="https://fonts.googleapis.com">
 
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossorigin
-    >
+        crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    >
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <link
         rel="stylesheet"
-        href="./style.css"
-    >
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link
+        rel="stylesheet"
+        href="./style.css">
 
 </head>
 
 <body>
 
-    <header>
+    <header class="site-header">
 
-        <div class="container">
+        <div class="container header-content">
 
-            <div class="logo">
+            <a
+                href="./admin.html"
+                class="brand">
 
-                <i
-                    class="fa-solid fa-shield-halved"
-                    aria-hidden="true"
-                ></i>
+                <span class="brand-icon">
 
-                <span>
-                    لوحة إدارة دليل الخدمات
+                    <i class="fa-solid fa-shield-halved"></i>
+
                 </span>
+
+                <span class="brand-text">
+
+                    <strong>
+                        لوحة الإدارة
+                    </strong>
+
+                    <small>
+                        دليل خدمات مركز شبين الكوم
+                    </small>
+
+                </span>
+
+            </a>
+
+            <div class="header-actions">
+
+                <a
+                    href="./index.html"
+                    class="villages-back-button">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    عرض الموقع
+
+                </a>
+
+                <button
+                    type="button"
+                    id="logoutButton"
+                    class="header-install-button">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>
+                        تسجيل الخروج
+                    </span>
+
+                </button>
 
             </div>
 
@@ -109,68 +131,87 @@
 
     </header>
 
+
     <main>
 
-        <section class="hero">
+        <section class="admin-dashboard-hero">
 
             <div class="container">
 
+                <span class="admin-dashboard-badge">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    منطقة الإدارة
+
+                </span>
+
                 <h1>
-                    إدارة الخدمات
+                    لوحة إدارة المنصة
                 </h1>
 
                 <p>
-                    مراجعة وقبول وتنظيم خدمات القرى
+                    إدارة الخدمات وبلاغات الموجودات والمفقودات من مكان واحد.
                 </p>
 
             </div>
 
         </section>
 
-        <section>
+
+        <section class="admin-controls-section">
 
             <div class="container">
 
-                <div class="service-card">
+                <div class="admin-controls-card">
 
-                    <h2>
-                        التحكم والبحث
-                    </h2>
+                    <div class="admin-control-group">
 
-                    <label for="villageFilter">
-                        اختيار القرية
-                    </label>
+                        <label for="villageFilter">
 
-                    <select id="villageFilter">
+                            <i class="fa-solid fa-location-dot"></i>
 
-                        <option value="">
-                            كل القرى
-                        </option>
+                            اختيار القرية
 
-                    </select>
+                        </label>
 
-                    <label for="adminSearch">
-                        بحث
-                    </label>
+                        <select id="villageFilter">
 
-                    <input
-                        type="search"
-                        id="adminSearch"
-                        placeholder="ابحث بالاسم أو المهنة أو القرية"
-                        autocomplete="off"
-                    >
+                            <option value="">
+                                كل القرى
+                            </option>
 
-                    <div class="buttons admin-control-buttons">
+                        </select>
+
+                    </div>
+
+
+                    <div class="admin-control-group">
+
+                        <label for="adminSearch">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            البحث في الخدمات
+
+                        </label>
+
+                        <input
+                            type="search"
+                            id="adminSearch"
+                            placeholder="ابحث بالاسم أو المهنة أو القرية..."
+                            autocomplete="off">
+
+                    </div>
+
+
+                    <div class="admin-control-actions">
 
                         <button
                             type="button"
-                            id="updateOldServicesButton"
-                        >
+                            id="updateOldServicesButton">
 
-                            <i
-                                class="fa-solid fa-rotate"
-                                aria-hidden="true"
-                            ></i>
+                            <i class="fa-solid fa-rotate"></i>
 
                             تحديث الخدمات القديمة
 
@@ -178,15 +219,11 @@
 
                         <button
                             type="button"
-                            id="logoutButton"
-                        >
+                            id="refreshAdminButton">
 
-                            <i
-                                class="fa-solid fa-right-from-bracket"
-                                aria-hidden="true"
-                            ></i>
+                            <i class="fa-solid fa-arrows-rotate"></i>
 
-                            تسجيل الخروج
+                            تحديث البيانات
 
                         </button>
 
@@ -194,8 +231,9 @@
 
                     <p
                         id="adminMessage"
-                        aria-live="polite"
-                    ></p>
+                        class="admin-message"
+                        aria-live="polite">
+                    </p>
 
                 </div>
 
@@ -203,75 +241,231 @@
 
         </section>
 
-        <section>
+
+        <section class="admin-stats-section">
 
             <div class="container">
 
-                <h2>
-                    📊 إحصائيات الدليل
-                </h2>
+                <div class="section-title">
 
-                <div class="cards">
+                    <span>
+                        نظرة عامة
+                    </span>
 
-                    <div class="card">
+                    <h2>
+                        إحصائيات المنصة
+                    </h2>
 
-                        <h3>
-                            📋 إجمالي الخدمات
-                        </h3>
+                </div>
 
-                        <h2 id="totalCount">
-                            0
-                        </h2>
 
-                    </div>
+                <div class="admin-stats-grid">
 
-                    <div class="card">
+                    <article class="admin-stat-card">
 
-                        <h3>
-                            ⏳ المعلقة
-                        </h3>
+                        <span class="admin-stat-icon services">
 
-                        <h2 id="pendingCount">
-                            0
-                        </h2>
+                            <i class="fa-solid fa-briefcase"></i>
 
-                    </div>
+                        </span>
 
-                    <div class="card">
+                        <div>
 
-                        <h3>
-                            ✅ المقبولة
-                        </h3>
+                            <small>
+                                إجمالي الخدمات
+                            </small>
 
-                        <h2 id="approvedCount">
-                            0
-                        </h2>
+                            <strong id="totalCount">
+                                0
+                            </strong>
 
-                    </div>
+                        </div>
 
-                    <div class="card">
+                    </article>
 
-                        <h3>
-                            ❌ المرفوضة
-                        </h3>
 
-                        <h2 id="rejectedCount">
-                            0
-                        </h2>
+                    <article class="admin-stat-card">
 
-                    </div>
+                        <span class="admin-stat-icon pending">
 
-                    <div class="card">
+                            <i class="fa-solid fa-clock"></i>
 
-                        <h3>
-                            🏘️ عدد القرى
-                        </h3>
+                        </span>
 
-                        <h2 id="villagesCount">
-                            0
-                        </h2>
+                        <div>
 
-                    </div>
+                            <small>
+                                خدمات معلقة
+                            </small>
+
+                            <strong id="pendingCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon approved">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                خدمات مقبولة
+                            </small>
+
+                            <strong id="approvedCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon rejected">
+
+                            <i class="fa-solid fa-circle-xmark"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                خدمات مرفوضة
+                            </small>
+
+                            <strong id="rejectedCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon villages">
+
+                            <i class="fa-solid fa-house"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                عدد القرى
+                            </small>
+
+                            <strong id="villagesCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon reports">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                إجمالي البلاغات
+                            </small>
+
+                            <strong id="totalReportsCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon pending">
+
+                            <i class="fa-solid fa-hourglass-half"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                بلاغات معلقة
+                            </small>
+
+                            <strong id="pendingReportsCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon approved">
+
+                            <i class="fa-solid fa-thumbs-up"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                بلاغات مقبولة
+                            </small>
+
+                            <strong id="approvedReportsCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="admin-stat-card">
+
+                        <span class="admin-stat-icon resolved">
+
+                            <i class="fa-solid fa-handshake"></i>
+
+                        </span>
+
+                        <div>
+
+                            <small>
+                                تم تسليمها
+                            </small>
+
+                            <strong id="resolvedReportsCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </article>
 
                 </div>
 
@@ -279,81 +473,311 @@
 
         </section>
 
-        <section>
+
+        <section class="admin-management-section">
 
             <div class="container">
 
-                <h2>
-                    ⏳ الخدمات المعلقة
-                </h2>
+                <div class="admin-tabs">
+
+                    <button
+                        type="button"
+                        class="admin-tab-button active"
+                        data-admin-tab="services">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        إدارة الخدمات
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="admin-tab-button"
+                        data-admin-tab="reports">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                        الموجودات والمفقودات
+
+                    </button>
+
+                </div>
+
 
                 <div
-                    id="pendingList"
-                    class="service-list"
-                    aria-live="polite"
-                >
+                    id="servicesAdminPanel"
+                    class="admin-panel active">
 
-                    <div class="service-card">
+                    <div class="admin-section-heading">
 
-                        <h3>
-                            جاري تحميل الخدمات المعلقة...
-                        </h3>
+                        <div>
+
+                            <span>
+                                الخدمات
+                            </span>
+
+                            <h2>
+                                الخدمات المعلقة
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="pendingList"
+                        class="service-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل الخدمات المعلقة...
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span>
+                                الخدمات
+                            </span>
+
+                            <h2>
+                                الخدمات المقبولة
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="approvedList"
+                        class="service-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل الخدمات المقبولة...
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span>
+                                الخدمات
+                            </span>
+
+                            <h2>
+                                الخدمات المرفوضة
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="rejectedList"
+                        class="service-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل الخدمات المرفوضة...
+                            </h3>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
-
-        </section>
-
-        <section>
-
-            <div class="container">
-
-                <h2>
-                    ✅ الخدمات المقبولة
-                </h2>
 
                 <div
-                    id="approvedList"
-                    class="service-list"
-                    aria-live="polite"
-                >
+                    id="reportsAdminPanel"
+                    class="admin-panel">
 
-                    <div class="service-card">
+                    <div class="admin-reports-tools">
 
-                        <h3>
-                            جاري تحميل الخدمات المقبولة...
-                        </h3>
+                        <div>
+
+                            <label for="adminReportsSearch">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                                البحث في البلاغات
+
+                            </label>
+
+                            <input
+                                type="search"
+                                id="adminReportsSearch"
+                                placeholder="ابحث بالعنوان أو القرية أو النوع..."
+                                autocomplete="off">
+
+                        </div>
+
+                        <div>
+
+                            <label for="adminReportsVillageFilter">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                فلترة حسب القرية
+
+                            </label>
+
+                            <select id="adminReportsVillageFilter">
+
+                                <option value="">
+                                    كل القرى
+                                </option>
+
+                            </select>
+
+                        </div>
 
                     </div>
 
-                </div>
 
-            </div>
+                    <div class="admin-section-heading">
 
-        </section>
+                        <div>
 
-        <section>
+                            <span>
+                                تحتاج مراجعة
+                            </span>
 
-            <div class="container">
+                            <h2>
+                                البلاغات المعلقة
+                            </h2>
 
-                <h2>
-                    ❌ الخدمات المرفوضة
-                </h2>
+                        </div>
 
-                <div
-                    id="rejectedList"
-                    class="service-list"
-                    aria-live="polite"
-                >
+                    </div>
 
-                    <div class="service-card">
+                    <div
+                        id="pendingReportsList"
+                        class="admin-reports-list"
+                        aria-live="polite">
 
-                        <h3>
-                            جاري تحميل الخدمات المرفوضة...
-                        </h3>
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل البلاغات المعلقة...
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span>
+                                منشورة للعامة
+                            </span>
+
+                            <h2>
+                                البلاغات المقبولة
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="approvedReportsList"
+                        class="admin-reports-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل البلاغات المقبولة...
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span>
+                                تم الانتهاء
+                            </span>
+
+                            <h2>
+                                البلاغات التي تم تسليمها
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="resolvedReportsList"
+                        class="admin-reports-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل البلاغات المسلمة...
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-section-heading">
+
+                        <div>
+
+                            <span>
+                                غير منشورة
+                            </span>
+
+                            <h2>
+                                البلاغات المرفوضة
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                    <div
+                        id="rejectedReportsList"
+                        class="admin-reports-list"
+                        aria-live="polite">
+
+                        <div class="service-card">
+
+                            <h3>
+                                جاري تحميل البلاغات المرفوضة...
+                            </h3>
+
+                        </div>
 
                     </div>
 
@@ -365,20 +789,28 @@
 
     </main>
 
+
     <footer>
 
-        <div class="container">
+        <div class="container footer-content">
 
-            <p>
-                © <span id="year"></span>
-                دليل خدمات مركز شبين الكوم
-            </p>
+            <div>
 
-            <p class="developer">
+                <h3>
+                    لوحة إدارة دليل شبين
+                </h3>
 
-                تم التطوير بواسطة
+                <p>
+                    إدارة الخدمات والبلاغات من مكان واحد.
+                </p>
 
-                <br><br>
+            </div>
+
+            <div class="developer">
+
+                <p>
+                    تم التطوير بواسطة
+                </p>
 
                 <strong>
                     Abdallah Badawy
@@ -398,11 +830,20 @@
 
                 💻 Web Developer
 
+            </div>
+
+            <p>
+
+                ©
+                <span id="year"></span>
+                جميع الحقوق محفوظة
+
             </p>
 
         </div>
 
     </footer>
+
 
     <script>
 
@@ -420,8 +861,8 @@
 
     <script
         type="module"
-        src="./admin.js"
-    ></script>
+        src="./admin.js">
+    </script>
 
 </body>
 
