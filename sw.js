@@ -1,14 +1,18 @@
-const CACHE_NAME = "mit-masoud-guide-v2";
+const CACHE_NAME = "mit-masoud-guide-v6";
 
 const STATIC_FILES = [
     "./",
     "./index.html",
     "./village.html",
+    "./villages.html",
     "./service.html",
     "./all-services.html",
     "./add-service.html",
     "./admin-login.html",
     "./admin.html",
+
+    "./lost-found.html",
+    "./add-lost-found.html",
 
     "./style.css",
 
@@ -16,9 +20,12 @@ const STATIC_FILES = [
     "./script.js",
     "./service.js",
     "./all-services.js",
+    "./villages.js",
     "./admin-login.js",
     "./admin.js",
     "./firebase.js",
+    "./lost-found.js",
+    "./add-lost-found.js",
 
     "./manifest.json",
     "./offline.html",
@@ -28,53 +35,69 @@ const STATIC_FILES = [
 ];
 
 
-/* تثبيت الـ Service Worker وتخزين الملفات */
+/* ========================================
+   تثبيت Service Worker
+======================================== */
 
 self.addEventListener("install", (event) => {
 
+    self.skipWaiting();
+
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(STATIC_FILES);
-        })
+
+        caches.open(CACHE_NAME)
+            .then((cache) => cache.addAll(STATIC_FILES))
+
     );
 
 });
 
 
-/* حذف النسخ القديمة من الكاش */
+/* ========================================
+   تفعيل النسخة الجديدة
+======================================== */
 
 self.addEventListener("activate", (event) => {
 
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
 
-            return Promise.all(
-                cacheNames
-                    .filter((cacheName) => cacheName !== CACHE_NAME)
-                    .map((cacheName) => caches.delete(cacheName))
-            );
+        caches.keys()
+            .then((cacheNames) => {
 
-        }).then(() => self.clients.claim())
+                return Promise.all(
+
+                    cacheNames
+                        .filter(name => name !== CACHE_NAME)
+                        .map(name => caches.delete(name))
+
+                );
+
+            })
+            .then(() => self.clients.claim())
+
     );
 
 });
 
 
-/* تفعيل النسخة الجديدة عند الضغط على زر التحديث */
+/* ========================================
+   تحديث فوري
+======================================== */
 
 self.addEventListener("message", (event) => {
 
-    if (
-        event.data &&
-        event.data.type === "SKIP_WAITING"
-    ) {
+    if (event.data?.type === "SKIP_WAITING") {
+
         self.skipWaiting();
+
     }
 
 });
 
 
-/* التعامل مع طلبات الموقع */
+/* ========================================
+   التعامل مع الطلبات
+======================================== */
 
 self.addEventListener("fetch", (event) => {
 
@@ -84,95 +107,99 @@ self.addEventListener("fetch", (event) => {
         return;
     }
 
-    const requestUrl = new URL(request.url);
+    const url = new URL(request.url);
 
+    /* عدم تخزين Firebase */
 
-    /* ترك Firebase يعمل من الإنترنت مباشرة */
+    if (
 
-    const firebaseHosts = [
-        "firebaseio.com",
-        "firestore.googleapis.com",
-        "identitytoolkit.googleapis.com",
-        "securetoken.googleapis.com"
-    ];
+        url.hostname.includes("firebaseio.com") ||
+        url.hostname.includes("firestore.googleapis.com") ||
+        url.hostname.includes("identitytoolkit.googleapis.com") ||
+        url.hostname.includes("securetoken.googleapis.com")
 
-    const isFirebaseRequest = firebaseHosts.some((host) =>
-        requestUrl.hostname.includes(host)
-    );
+    ) {
 
-    if (isFirebaseRequest) {
         return;
+
     }
 
 
-    /* صفحات HTML: الإنترنت أولًا ثم النسخة المخزنة */
+    /* صفحات HTML */
 
     if (request.mode === "navigate") {
 
         event.respondWith(
+
             fetch(request)
+
                 .then((response) => {
 
-                    if (response && response.ok) {
+                    const copy = response.clone();
 
-                        const responseCopy = response.clone();
-
-                        caches.open(CACHE_NAME).then((cache) => {
-                            cache.put(request, responseCopy);
-                        });
-
-                    }
+                    caches.open(CACHE_NAME)
+                        .then(cache => cache.put(request, copy));
 
                     return response;
 
                 })
+
                 .catch(async () => {
 
-                    const cachedPage = await caches.match(request);
+                    return (
 
-                    if (cachedPage) {
-                        return cachedPage;
-                    }
+                        await caches.match(request) ||
 
-                    return caches.match("./offline.html");
+                        await caches.match("./offline.html")
+
+                    );
 
                 })
+
         );
 
         return;
+
     }
 
 
-    /* CSS وJavaScript والصور: الكاش أولًا */
+    /* CSS / JS / Images */
 
     event.respondWith(
-        caches.match(request).then((cachedResponse) => {
 
-            if (cachedResponse) {
-                return cachedResponse;
-            }
+        caches.match(request)
 
-            return fetch(request).then((networkResponse) => {
+            .then((cached) => {
 
-                if (
-                    !networkResponse ||
-                    !networkResponse.ok ||
-                    networkResponse.type === "opaque"
-                ) {
-                    return networkResponse;
-                }
+                return (
 
-                const responseCopy = networkResponse.clone();
+                    cached ||
 
-                caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(request, responseCopy);
-                });
+                    fetch(request).then((response) => {
 
-                return networkResponse;
+                        if (
 
-            });
+                            response &&
+                            response.ok &&
+                            response.type !== "opaque"
 
-        })
+                        ) {
+
+                            const copy = response.clone();
+
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.put(request, copy));
+
+                        }
+
+                        return response;
+
+                    })
+
+                );
+
+            })
+
     );
 
 });
