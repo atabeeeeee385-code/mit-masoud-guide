@@ -1,4 +1,4 @@
-const CACHE_NAME = "mit-masoud-guide-v9";
+const CACHE_NAME = "mit-masoud-guide-v11";
 const STATIC_FILES = [
     "./",
     "./index.html",

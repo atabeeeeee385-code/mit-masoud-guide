@@ -9,25 +9,36 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
+/*
+========================================
+بيانات عامة
+========================================
+*/
+
 let services = [];
 let globalServices = [];
 
 
-const params = new URLSearchParams(window.location.search);
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
 
 const villageFromUrl =
     params.get("village")?.trim() || "";
 
+const villageName =
+    villageFromUrl || "ميت مسعود";
+
+
+/*
+========================================
+عناصر الصفحة
+========================================
+*/
+
 const villageSelect =
     document.getElementById("village");
-
-if (
-    villageSelect &&
-    villageFromUrl
-) {
-    villageSelect.value =
-        villageFromUrl;
-}
 
 const serviceForm =
     document.getElementById("serviceForm");
@@ -45,51 +56,120 @@ const searchButton =
     document.getElementById("searchButton");
 
 
+/*
+========================================
+تحديد القرية القادمة من الرابط
+========================================
+*/
+
+if (
+    villageSelect &&
+    villageFromUrl
+) {
+
+    villageSelect.value =
+        villageFromUrl;
+
+}
+
+
+/*
+========================================
+حماية النص
+========================================
+*/
+
 function escapeHTML(value) {
+
     return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
 }
 
 
+/*
+========================================
+تنسيق النص العربي
+========================================
+*/
+
 function normalizeArabicText(value) {
+
     return String(value ?? "")
         .trim()
         .toLowerCase()
-        .replace(/[أإآ]/g, "ا")
+        .replace(/[أإآٱ]/g, "ا")
         .replace(/ى/g, "ي")
         .replace(/ة/g, "ه")
         .replace(/ؤ/g, "و")
         .replace(/ئ/g, "ي")
-        .replace(/[\u064B-\u065F\u0670]/g, "");
+        .replace(/ـ/g, "")
+        .replace(
+            /[\u064B-\u065F\u0670]/g,
+            ""
+        );
+
 }
 
+
+/*
+========================================
+تنظيف رقم الهاتف
+========================================
+*/
 
 function cleanPhoneNumber(phone) {
+
     return String(phone ?? "")
         .replace(/[^\d+]/g, "");
+
 }
 
+
+/*
+========================================
+تنظيف رقم واتساب
+========================================
+*/
 
 function cleanWhatsAppNumber(phone) {
 
     let number =
-        String(phone ?? "").replace(/\D/g, "");
+        String(phone ?? "")
+            .replace(/\D/g, "");
 
-    if (number.startsWith("00")) {
-        number = number.slice(2);
+    if (
+        number.startsWith("00")
+    ) {
+
+        number =
+            number.slice(2);
+
     }
 
-    if (number.startsWith("0")) {
-        number = `20${number.slice(1)}`;
+    if (
+        number.startsWith("0")
+    ) {
+
+        number =
+            `20${number.slice(1)}`;
+
     }
 
     return number;
+
 }
 
+
+/*
+========================================
+قراءة قيمة أي حقل
+========================================
+*/
 
 function getInputValue(id) {
 
@@ -99,204 +179,432 @@ function getInputValue(id) {
     return element
         ? element.value.trim()
         : "";
+
 }
 
+
+/*
+========================================
+اسم القسم
+========================================
+*/
 
 function getCategoryName(category) {
 
     const categories = {
-        health: "🏥 الصحة والطوارئ",
-        pharmacy: "💊 الصيدليات",
-        education: "🎓 التعليم والمدرسين",
-        home: "🏠 المنزل والصيانة",
-        construction: "🏗️ البناء والتشطيبات",
-        cars: "🚗 السيارات والمواصلات",
-        food: "🍔 الطعام والديليفري",
-        shipping: "📦 الشحن والتوصيل",
-        shops: "🛒 المحلات والتجارة",
-        personal: "💇 الخدمات الشخصية",
-        charity: "❤️ العمل الخيري",
-        agriculture: "🌾 الزراعة والبيطرة",
-        technology: "💻 التكنولوجيا والصيانة",
-        legal: "⚖️ المحاماة والمحاسبة",
-        events: "🎉 المناسبات والتصوير",
-        jobs: "💼 الوظائف والتدريب",
-        government: "🏛️ الخدمات الحكومية",
-        general: "⭐ خدمات عامة"
+
+        health:
+            "🏥 الصحة والطوارئ",
+
+        pharmacy:
+            "💊 الصيدليات",
+
+        education:
+            "🎓 التعليم والمدرسين",
+
+        home:
+            "🏠 المنزل والصيانة",
+
+        construction:
+            "🏗️ البناء والتشطيبات",
+
+        cars:
+            "🚗 السيارات والمواصلات",
+
+        food:
+            "🍔 الطعام والديليفري",
+
+        shipping:
+            "📦 الشحن والتوصيل",
+
+        shops:
+            "🛒 المحلات والتجارة",
+
+        personal:
+            "💇 الخدمات الشخصية",
+
+        charity:
+            "❤️ العمل الخيري",
+
+        agriculture:
+            "🌾 الزراعة والبيطرة",
+
+        technology:
+            "💻 التكنولوجيا والصيانة",
+
+        legal:
+            "⚖️ المحاماة والمحاسبة",
+
+        events:
+            "🎉 المناسبات والتصوير",
+
+        jobs:
+            "💼 الوظائف والتدريب",
+
+        government:
+            "🏛️ الخدمات الحكومية",
+
+        general:
+            "⭐ خدمات عامة"
+
     };
 
-    return categories[category] || "⭐ خدمات عامة";
+    return (
+        categories[category] ||
+        "⭐ خدمات عامة"
+    );
+
 }
 
+
+/*
+========================================
+رابط تفاصيل الخدمة
+========================================
+*/
 
 function getServiceDetailsUrl(service) {
 
     return (
-        `service.html?id=${encodeURIComponent(service.id)}` +
-        `&village=${encodeURIComponent(service.village || villageName)}`
+        `service.html?id=${encodeURIComponent(
+            service.id
+        )}` +
+        `&village=${encodeURIComponent(
+            service.village ||
+            villageName
+        )}`
     );
+
 }
 
+
+/*
+========================================
+إضافة خدمة جديدة
+========================================
+*/
 
 if (serviceForm) {
 
-    serviceForm.addEventListener("submit", async function (event) {
+    serviceForm.addEventListener(
+        "submit",
+        async function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        const submitButton =
-            serviceForm.querySelector(
-                'button[type="submit"]'
-            );
+            const submitButton =
+                serviceForm.querySelector(
+                    'button[type="submit"]'
+                );
 
-        const newService = {
+            const selectedVillage =
+                getInputValue("village") ||
+                villageFromUrl ||
+                "";
 
-            status: "pending",
+            const newService = {
 
-            village: villageName,
+                status:
+                    "pending",
 
-            category: getInputValue("category"),
+                village:
+                    selectedVillage,
 
-            type: "village",
+                category:
+                    getInputValue("category"),
 
-            name: getInputValue("name"),
+                type:
+                    "village",
 
-            job: getInputValue("job"),
+                name:
+                    getInputValue("name"),
 
-            phone: getInputValue("phone"),
+                job:
+                    getInputValue("job"),
 
-            whatsapp: getInputValue("whatsapp"),
+                phone:
+                    getInputValue("phone"),
 
-            address: getInputValue("address"),
+                whatsapp:
+                    getInputValue("whatsapp"),
 
-            description: getInputValue("description"),
+                address:
+                    getInputValue("address"),
 
-            facebook: getInputValue("facebook"),
+                description:
+                    getInputValue("description"),
 
-            instagram: getInputValue("instagram"),
+                facebook:
+                    getInputValue("facebook"),
 
-            tiktok: getInputValue("tiktok"),
+                instagram:
+                    getInputValue("instagram"),
 
-            createdAt: Date.now()
+                tiktok:
+                    getInputValue("tiktok"),
 
-        };
+                createdAt:
+                    Date.now()
 
-
-        if (
-    !newService.name ||
-    !newService.job ||
-    !newService.phone ||
-    !newService.category ||
-    !newService.village
-      ) {
-            alert("يرجى إدخال الاسم والمهنة ورقم الهاتف والقسم واختيار القرية .");
-            return;
-        }
+            };
 
 
-        try {
+            if (
+                !newService.name ||
+                !newService.job ||
+                !newService.phone ||
+                !newService.category ||
+                !newService.village
+            ) {
 
-            if (submitButton) {
+                alert(
+                    "يرجى إدخال الاسم والمهنة ورقم الهاتف والقسم واختيار القرية."
+                );
 
-                submitButton.disabled = true;
-
-                submitButton.textContent =
-                    "جاري الإرسال...";
-
-            }
-
-            await addDoc(
-                collection(db, "services"),
-                newService
-            );
-
-            alert(
-                "تم إرسال خدمتك للمراجعة بنجاح ✅"
-            );
-
-            serviceForm.reset();
-
-        } catch (error) {
-
-    console.error(
-        "خطأ إضافة الخدمة:",
-        error.code,
-        error.message
-    );
-
-    alert(
-        `${error.code || "unknown-error"}\n\n${error.message || "حدث خطأ غير معروف"}`
-    );
-
-} finally {
-
-            if (submitButton) {
-
-                submitButton.disabled = false;
-
-                submitButton.textContent =
-                    "إرسال البيانات";
+                return;
 
             }
 
-        }
 
-    });
+            if (
+                newService.name.length < 2 ||
+                newService.name.length > 100
+            ) {
+
+                alert(
+                    "الاسم يجب أن يكون من حرفين إلى 100 حرف."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newService.job.length < 2 ||
+                newService.job.length > 100
+            ) {
+
+                alert(
+                    "المهنة أو الخدمة يجب أن تكون من حرفين إلى 100 حرف."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newService.phone.length < 8 ||
+                newService.phone.length > 20
+            ) {
+
+                alert(
+                    "رقم الهاتف يجب أن يكون من 8 إلى 20 رقمًا."
+                );
+
+                return;
+
+            }
+
+
+            try {
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        true;
+
+                    submitButton.textContent =
+                        "جاري الإرسال...";
+
+                }
+
+
+                await addDoc(
+                    collection(
+                        db,
+                        "services"
+                    ),
+                    newService
+                );
+
+
+                alert(
+                    "تم إرسال خدمتك للمراجعة بنجاح ✅"
+                );
+
+
+                serviceForm.reset();
+
+
+                if (
+                    villageSelect &&
+                    villageFromUrl
+                ) {
+
+                    villageSelect.value =
+                        villageFromUrl;
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "خطأ إضافة الخدمة:",
+                    error.code,
+                    error.message,
+                    error
+                );
+
+
+                if (
+                    error.code ===
+                    "permission-denied"
+                ) {
+
+                    alert(
+                        "Firebase رفض حفظ الخدمة.\n\nتأكد من نشر قواعد Firestore وأن البيانات مطابقة للشروط."
+                    );
+
+                } else if (
+                    error.code ===
+                    "unavailable"
+                ) {
+
+                    alert(
+                        "تعذر الاتصال بـ Firebase.\n\nتحقق من الإنترنت وحاول مرة أخرى."
+                    );
+
+                } else {
+
+                    alert(
+                        `حدث خطأ أثناء إضافة الخدمة:\n\n${error.code || "unknown-error"}\n${error.message || "حدث خطأ غير معروف"}`
+                    );
+
+                }
+
+            } finally {
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "إرسال البيانات";
+
+                }
+
+            }
+
+        }
+    );
 
 }
-
+/*
+========================================
+تحميل خدمات القرية
+========================================
+*/
 
 async function loadServices() {
 
     if (!serviceList) {
+
         return;
+
     }
+
 
     serviceList.innerHTML = `
         <div class="service-card">
-            <h3>جاري تحميل خدمات القرية...</h3>
+
+            <h3>
+                جاري تحميل خدمات القرية...
+            </h3>
+
         </div>
     `;
+
 
     try {
 
         services = [];
 
-        const servicesQuery = query(
-            collection(db, "services"),
-            where("village", "==", villageName),
-            where("type", "==", "village"),
-            where("status", "==", "approved")
-        );
+
+        const servicesQuery =
+            query(
+                collection(
+                    db,
+                    "services"
+                ),
+                where(
+                    "village",
+                    "==",
+                    villageName
+                ),
+                where(
+                    "type",
+                    "==",
+                    "village"
+                ),
+                where(
+                    "status",
+                    "==",
+                    "approved"
+                )
+            );
+
 
         const snapshot =
-            await getDocs(servicesQuery);
+            await getDocs(
+                servicesQuery
+            );
 
-        snapshot.forEach((serviceDocument) => {
 
-            services.push({
-                id: serviceDocument.id,
-                ...serviceDocument.data()
-            });
+        snapshot.forEach(
+            (serviceDocument) => {
 
-        });
+                services.push({
 
-        services.sort((a, b) =>
-            (b.createdAt || 0) -
-            (a.createdAt || 0)
+                    id:
+                        serviceDocument.id,
+
+                    ...serviceDocument.data()
+
+                });
+
+            }
         );
 
-        displayServices(services);
+
+        services.sort(
+            (a, b) =>
+                (b.createdAt || 0) -
+                (a.createdAt || 0)
+        );
+
+
+        displayServices(
+            services
+        );
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "خطأ تحميل خدمات القرية:",
+            error
+        );
+
 
         serviceList.innerHTML = `
             <div class="service-card">
 
                 <h3>
-                    تعذر تحميل خدمات ${escapeHTML(villageName)} ❌
+                    تعذر تحميل خدمات
+                    ${escapeHTML(villageName)}
+                    ❌
                 </h3>
 
                 <p>
@@ -306,16 +614,20 @@ async function loadServices() {
                 <button
                     type="button"
                     class="details-btn"
-                    id="retryServicesButton"
-                >
+                    id="retryServicesButton">
+
                     إعادة المحاولة
+
                 </button>
 
             </div>
         `;
 
+
         document
-            .getElementById("retryServicesButton")
+            .getElementById(
+                "retryServicesButton"
+            )
             ?.addEventListener(
                 "click",
                 loadServices
@@ -326,56 +638,104 @@ async function loadServices() {
 }
 
 
+/*
+========================================
+تحميل الخدمات العامة
+========================================
+*/
+
 async function loadGlobalServices() {
 
     if (!globalList) {
+
         return;
+
     }
+
 
     globalList.innerHTML = `
         <div class="service-card">
-            <h3>جاري تحميل الخدمات المهمة...</h3>
+
+            <h3>
+                جاري تحميل الخدمات المهمة...
+            </h3>
+
         </div>
     `;
+
 
     try {
 
         globalServices = [];
 
-        const globalQuery = query(
-            collection(db, "services"),
-            where("type", "==", "global"),
-            where("status", "==", "approved")
-        );
+
+        const globalQuery =
+            query(
+                collection(
+                    db,
+                    "services"
+                ),
+                where(
+                    "type",
+                    "==",
+                    "global"
+                ),
+                where(
+                    "status",
+                    "==",
+                    "approved"
+                )
+            );
+
 
         const snapshot =
-            await getDocs(globalQuery);
+            await getDocs(
+                globalQuery
+            );
 
-        snapshot.forEach((serviceDocument) => {
 
-            globalServices.push({
-                id: serviceDocument.id,
-                ...serviceDocument.data()
-            });
+        snapshot.forEach(
+            (serviceDocument) => {
 
-        });
+                globalServices.push({
 
-        globalServices.sort((a, b) =>
-            (b.createdAt || 0) -
-            (a.createdAt || 0)
+                    id:
+                        serviceDocument.id,
+
+                    ...serviceDocument.data()
+
+                });
+
+            }
         );
 
-        displayGlobalServices(globalServices);
+
+        globalServices.sort(
+            (a, b) =>
+                (b.createdAt || 0) -
+                (a.createdAt || 0)
+        );
+
+
+        displayGlobalServices(
+            globalServices
+        );
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "خطأ تحميل الخدمات العامة:",
+            error
+        );
+
 
         globalList.innerHTML = `
             <div class="service-card">
+
                 <h3>
                     تعذر تحميل الخدمات المهمة ❌
                 </h3>
+
             </div>
         `;
 
@@ -384,29 +744,41 @@ async function loadGlobalServices() {
 }
 
 
+/*
+========================================
+إنشاء كارت خدمة
+========================================
+*/
+
 function createServiceCard(
     service,
     isGlobal = false
 ) {
 
     const serviceName =
-        service.name || "مقدم خدمة";
+        service.name ||
+        "مقدم خدمة";
 
     const serviceJob =
-        service.job || "خدمة عامة";
+        service.job ||
+        "خدمة عامة";
 
     const serviceVillage =
-        service.village || villageName;
+        service.village ||
+        villageName;
 
     const serviceAddress =
-        service.address || serviceVillage;
+        service.address ||
+        serviceVillage;
 
     const serviceDescription =
         service.description ||
         `خدمة داخل ${serviceVillage}`;
 
     const phone =
-        cleanPhoneNumber(service.phone);
+        cleanPhoneNumber(
+            service.phone
+        );
 
     const whatsapp =
         cleanWhatsAppNumber(
@@ -415,50 +787,67 @@ function createServiceCard(
         );
 
     const card =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    card.className = "service-card";
-
-
-    const callButton = phone
-        ? `
-            <a
-                class="call"
-                href="tel:${escapeHTML(phone)}"
-            >
-                📞 اتصال
-            </a>
-        `
-        : "";
+    card.className =
+        "service-card";
 
 
-    const whatsappButton = whatsapp
-        ? `
-            <a
-                class="whatsapp"
-                href="https://wa.me/${escapeHTML(whatsapp)}"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                💬 واتساب
-            </a>
-        `
-        : "";
+    const callButton =
+        phone
+            ? `
+                <a
+                    class="call"
+                    href="tel:${escapeHTML(
+                        phone
+                    )}">
+
+                    📞 اتصال
+
+                </a>
+            `
+            : "";
+
+
+    const whatsappButton =
+        whatsapp
+            ? `
+                <a
+                    class="whatsapp"
+                    href="https://wa.me/${escapeHTML(
+                        whatsapp
+                    )}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    💬 واتساب
+
+                </a>
+            `
+            : "";
 
 
     card.innerHTML = `
 
         <h3>
-            👤 ${escapeHTML(serviceName)}
+            👤 ${escapeHTML(
+                serviceName
+            )}
         </h3>
 
         <span>
-            🔧 ${escapeHTML(serviceJob)}
+            🔧 ${escapeHTML(
+                serviceJob
+            )}
         </span>
 
         <p>
             📂 ${escapeHTML(
-                getCategoryName(service.category)
+                getCategoryName(
+                    service.category
+                )
             )}
         </p>
 
@@ -471,35 +860,47 @@ function createServiceCard(
                 `
                 : `
                     <p>
-                        📍 ${escapeHTML(serviceAddress)}
+                        📍 ${escapeHTML(
+                            serviceAddress
+                        )}
                     </p>
 
                     <p>
-                        📝 ${escapeHTML(serviceDescription)}
+                        📝 ${escapeHTML(
+                            serviceDescription
+                        )}
                     </p>
                 `
         }
 
         <div class="buttons">
+
             ${callButton}
+
             ${whatsappButton}
+
         </div>
 
         <div class="buttons service-extra-buttons">
 
             <a
                 class="details-btn"
-                href="${getServiceDetailsUrl(service)}"
-            >
+                href="${getServiceDetailsUrl(
+                    service
+                )}">
+
                 عرض التفاصيل
+
             </a>
 
             <button
                 type="button"
-                class="share service-share-button"
-            >
+                class="share service-share-button">
+
                 <i class="fa-solid fa-share-nodes"></i>
+
                 مشاركة
+
             </button>
 
         </div>
@@ -511,34 +912,54 @@ function createServiceCard(
             ".service-share-button"
         );
 
+
     shareButton?.addEventListener(
         "click",
-        () => shareService(
-            service,
-            shareButton
-        )
+        () => {
+
+            shareService(
+                service,
+                shareButton
+            );
+
+        }
     );
 
-    return card;
-}
 
+    return card;
+
+}
+/*
+========================================
+عرض خدمات القرية
+========================================
+*/
 
 function displayServices(data) {
 
     if (!serviceList) {
+
         return;
+
     }
 
-    serviceList.innerHTML = "";
 
-    if (data.length === 0) {
+    serviceList.innerHTML =
+        "";
+
+
+    if (
+        !Array.isArray(data) ||
+        data.length === 0
+    ) {
 
         serviceList.innerHTML = `
             <div class="service-card">
 
                 <h3>
                     لا توجد خدمات مطابقة في
-                    ${escapeHTML(villageName)} حاليًا
+                    ${escapeHTML(villageName)}
+                    حاليًا
                 </h3>
 
                 <p>
@@ -547,118 +968,204 @@ function displayServices(data) {
 
                 <a
                     class="details-btn"
-                    href="add-service.html?village=${encodeURIComponent(villageName)}"
-                >
+                    href="add-service.html?village=${encodeURIComponent(
+                        villageName
+                    )}">
+
                     أضف خدمتك
+
                 </a>
 
             </div>
         `;
 
         return;
+
     }
+
 
     const fragment =
         document.createDocumentFragment();
 
-    data.forEach((service) => {
 
-        fragment.appendChild(
-            createServiceCard(service)
-        );
+    data.forEach(
+        (service) => {
 
-    });
+            fragment.appendChild(
+                createServiceCard(
+                    service
+                )
+            );
 
-    serviceList.appendChild(fragment);
+        }
+    );
+
+
+    serviceList.appendChild(
+        fragment
+    );
+
 }
 
+
+/*
+========================================
+عرض الخدمات العامة
+========================================
+*/
 
 function displayGlobalServices(data) {
 
     if (!globalList) {
+
         return;
+
     }
 
-    globalList.innerHTML = "";
 
-    if (data.length === 0) {
+    globalList.innerHTML =
+        "";
+
+
+    if (
+        !Array.isArray(data) ||
+        data.length === 0
+    ) {
 
         globalList.innerHTML = `
             <div class="service-card">
+
                 <h3>
                     لا توجد خدمات عامة حاليًا
                 </h3>
+
             </div>
         `;
 
         return;
+
     }
+
 
     const fragment =
         document.createDocumentFragment();
 
-    data.forEach((service) => {
 
-        fragment.appendChild(
-            createServiceCard(
-                service,
-                true
-            )
-        );
+    data.forEach(
+        (service) => {
 
-    });
+            fragment.appendChild(
+                createServiceCard(
+                    service,
+                    true
+                )
+            );
 
-    globalList.appendChild(fragment);
+        }
+    );
+
+
+    globalList.appendChild(
+        fragment
+    );
+
 }
 
+
+/*
+========================================
+البحث داخل خدمات القرية
+========================================
+*/
 
 function searchServices() {
 
     if (!searchInput) {
+
         return;
+
     }
+
 
     const searchValue =
         normalizeArabicText(
             searchInput.value
         );
 
+
     if (!searchValue) {
 
-        displayServices(services);
+        displayServices(
+            services
+        );
 
         return;
+
     }
 
+
     const filteredServices =
-        services.filter((service) => {
+        services.filter(
+            (service) => {
 
-            const searchableText =
-                normalizeArabicText([
-                    service.name,
-                    service.job,
-                    service.description,
-                    service.address,
-                    service.category,
-                    getCategoryName(
-                        service.category
-                    )
-                ].join(" "));
+                const searchableText =
+                    normalizeArabicText(
+                        [
+                            service.name,
+                            service.job,
+                            service.description,
+                            service.address,
+                            service.category,
+                            getCategoryName(
+                                service.category
+                            )
+                        ].join(" ")
+                    );
 
-            return searchableText.includes(
-                searchValue
-            );
+                return searchableText.includes(
+                    searchValue
+                );
 
-        });
+            }
+        );
 
-    displayServices(filteredServices);
+
+    displayServices(
+        filteredServices
+    );
+
 }
 
+
+/*
+========================================
+أحداث البحث
+========================================
+*/
 
 searchInput?.addEventListener(
     "input",
     searchServices
 );
+
+
+searchInput?.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            searchServices();
+
+        }
+
+    }
+);
+
 
 searchButton?.addEventListener(
     "click",
@@ -666,25 +1173,47 @@ searchButton?.addEventListener(
 );
 
 
-window.filterCategory = function (category) {
+/*
+========================================
+فلترة الأقسام
+========================================
+*/
 
-    const filteredServices =
-        services.filter(
-            (service) =>
-                service.category === category
+window.filterCategory =
+    function (category) {
+
+        const filteredServices =
+            services.filter(
+                (service) =>
+                    service.category ===
+                    category
+            );
+
+
+        displayServices(
+            filteredServices
         );
 
-    displayServices(filteredServices);
 
-    document
-        .querySelector(".services")
-        ?.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        document
+            .querySelector(
+                ".services"
+            )
+            ?.scrollIntoView({
+                behavior:
+                    "smooth",
+                block:
+                    "start"
+            });
 
-};
+    };
 
+
+/*
+========================================
+مشاركة الخدمة
+========================================
+*/
 
 async function shareService(
     service,
@@ -692,19 +1221,25 @@ async function shareService(
 ) {
 
     const serviceName =
-        service.name || "خدمة";
+        service.name ||
+        "خدمة";
 
     const serviceJob =
-        service.job || "خدمة عامة";
+        service.job ||
+        "خدمة عامة";
 
     const serviceVillage =
-        service.village || villageName;
+        service.village ||
+        villageName;
 
     const serviceUrl =
         new URL(
-            getServiceDetailsUrl(service),
+            getServiceDetailsUrl(
+                service
+            ),
             window.location.href
         ).href;
+
 
     const shareData = {
 
@@ -714,60 +1249,80 @@ async function shareService(
         text:
             `شاهد بيانات ${serviceName} في ${serviceVillage}`,
 
-        url: serviceUrl
+        url:
+            serviceUrl
 
     };
 
+
     try {
 
-        if (navigator.share) {
+        if (
+            navigator.share
+        ) {
 
             await navigator.share(
                 shareData
             );
 
             return;
+
         }
 
-        await navigator.clipboard.writeText(
-            serviceUrl
-        );
+
+        await navigator
+            .clipboard
+            .writeText(
+                serviceUrl
+            );
+
 
         const oldContent =
             shareButton.innerHTML;
 
+
         shareButton.innerHTML =
             "✅ تم نسخ الرابط";
 
-        setTimeout(() => {
 
-            shareButton.innerHTML =
-                oldContent;
+        window.setTimeout(
+            () => {
 
-        }, 2000);
+                shareButton.innerHTML =
+                    oldContent;
+
+            },
+            2000
+        );
 
     } catch (error) {
 
-    if (error.name !== "AbortError") {
+        if (
+            error.name !==
+            "AbortError"
+        ) {
 
-        console.error(
-            "خطأ مشاركة الخدمة:",
-            error
-        );
+            console.error(
+                "خطأ مشاركة الخدمة:",
+                error
+            );
 
-        alert(
-            "تعذر مشاركة الخدمة."
-        );
+
+            alert(
+                "تعذر مشاركة الخدمة."
+            );
+
+        }
 
     }
 
 }
-
-}
-    
-
-
-
+/*
+========================================
+تشغيل تحميل البيانات
+========================================
+*/
 
 loadServices();
+
 loadGlobalServices();
