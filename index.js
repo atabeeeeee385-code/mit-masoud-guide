@@ -378,25 +378,30 @@ function displayVillages(list) {
 
 function searchVillages() {
 
-    if (!searchInput) {
-
-        return;
-
-    }
-
     const searchValue =
-        normalizeArabicText(
-            searchInput.value
-        );
-
+        searchInput?.value.trim() || "";
 
     if (!searchValue) {
 
-        displayVillages(villages);
+        showToast(
+            "اكتب اسم القرية أو الخدمة أولًا."
+        );
+
+        searchInput?.focus();
 
         return;
 
     }
+
+    window.location.href =
+        `./villages.html?search=${encodeURIComponent(searchValue)}`;
+
+}
+
+    window.location.href =
+        `./villages.html?search=${encodeURIComponent(searchValue)}`;
+
+
 
 
     const filteredVillages =
@@ -427,7 +432,7 @@ function searchVillages() {
 
     }
 
-}
+
 
 
 /*
