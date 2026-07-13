@@ -398,43 +398,6 @@ function searchVillages() {
 
 }
 
-    window.location.href =
-        `./villages.html?search=${encodeURIComponent(searchValue)}`;
-
-
-
-
-    const filteredVillages =
-        villages.filter((village) => {
-
-            const normalizedVillage =
-                normalizeArabicText(village);
-
-            return normalizedVillage.includes(
-                searchValue
-            );
-
-        });
-
-
-    displayVillages(filteredVillages);
-
-
-    const villagesSection =
-        document.getElementById("villages");
-
-    if (villagesSection) {
-
-        villagesSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-    }
-
-
-
-
 /*
 ========================================
 تشغيل البحث
