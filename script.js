@@ -218,13 +218,17 @@ if (serviceForm) {
 
         } catch (error) {
 
-            console.error(error);
+    console.error(
+        "خطأ إضافة الخدمة:",
+        error.code,
+        error.message
+    );
 
-            alert(
-                "حدث خطأ أثناء إضافة الخدمة."
-            );
+    alert(
+        `${error.code || "unknown-error"}\n\n${error.message || "حدث خطأ غير معروف"}`
+    );
 
-        } finally {
+} finally {
 
             if (submitButton) {
 
@@ -744,40 +748,23 @@ async function shareService(
 
     } catch (error) {
 
-    console.error(
-        "خطأ إضافة الخدمة:",
-        error.code,
-        error.message
-    );
+    if (error.name !== "AbortError") {
 
-    if (
-        error.code ===
-        "permission-denied"
-    ) {
-
-        alert(
-            "Firebase رفض حفظ الخدمة. تأكد من نشر قواعد Firestore وأن البيانات مطابقة للشروط."
+        console.error(
+            "خطأ مشاركة الخدمة:",
+            error
         );
 
-    } else if (
-        error.code ===
-        "unavailable"
-    ) {
-
         alert(
-            "تعذر الاتصال بـ Firebase. تحقق من الإنترنت وحاول مرة أخرى."
-        );
-
-    } else {
-
-        alert(
-            `حدث خطأ أثناء إضافة الخدمة:\n${error.code || error.message}`
+            "تعذر مشاركة الخدمة."
         );
 
     }
 
 }
-    }
+
+}
+    
 
 
 
