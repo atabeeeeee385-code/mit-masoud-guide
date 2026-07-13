@@ -168,3 +168,16 @@ new Event("input")
 );
 
 });
+const incomingSearch =
+    new URLSearchParams(
+        window.location.search
+    ).get("search");
+
+if (incomingSearch && searchInput) {
+
+    searchInput.value =
+        incomingSearch;
+
+    searchVillages();
+
+}
